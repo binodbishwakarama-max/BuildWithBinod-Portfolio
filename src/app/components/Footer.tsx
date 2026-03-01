@@ -12,7 +12,7 @@ export function Footer() {
       }
     } else {
       const password = window.prompt('Enter Admin Password:');
-      if (password === 'admin123') {
+      if (password === 'Binod0958') {
         setIsAdmin(true);
         alert('Admin Mode Enabled! You can now edit the portfolio.');
       } else if (password !== null) {
