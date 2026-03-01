@@ -1,0 +1,97 @@
+{
+    "projects": [
+        {
+            "id": "proj-1",
+            "title": "MindFlow AI Study Assistant",
+            "description": "A comprehensive AI-powered study platform featuring flashcards, quizzes, and PDF upload capabilities. Includes a gamification system and a modern glassmorphism UI.",
+            "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlfGVufDB8fHx8MTcyMzc2MzMzNw&ixlib=rb-4.0.3&q=80&w=1080",
+            "tags": [],
+            "githubUrl": "https://github.com/binodbishwakarama-max/Aistudy",
+            "liveUrl": "https://smartstudy-nu.vercel.app/"
+        },
+        {
+            "id": "proj-2",
+            "title": "AI Health PWA",
+            "description": "An installable Progressive Web App (PWA) designed for healthcare assistance. It integrates AI Chat, Voice-to-Text, and Text-to-Speech functionalities using Gemini AI.",
+            "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlfGVufDB8fHx8MTcyMzc2MzM2NA&ixlib=rb-4.0.3&q=80&w=1080",
+            "tags": [],
+            "githubUrl": "https://github.com/binodbishwakarama-max/Aihealth",
+            "liveUrl": "https://aihealth-ijnb.vercel.app/"
+        },
+        {
+            "id": "proj-3",
+            "title": "Smart News App",
+            "description": "A full-stack news application that provides a seamless reading experience with advanced search and discovery features. Deployed via Docker containers.",
+            "image": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXdzfGVufDB8fHx8MTcyMzc2MzQwMg&ixlib=rb-4.0.3&q=80&w=1080",
+            "tags": [],
+            "githubUrl": "https://github.com/binodbishwakarama-max/smartnews",
+            "liveUrl": ""
+        },
+        {
+            "id": "proj-4",
+            "title": "Covid-19 Data Dashboard",
+            "description": "A data visualization platform for tracking and analyzing global Covid-19 statistics in real-time.",
+            "image": "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3JvbmF2aXJ1c3xlbnwwfHx8fDE3MjM3NjM0Mjk&ixlib=rb-4.0.3&q=80&w=1080",
+            "tags": [],
+            "githubUrl": "https://github.com/binodbishwakarama-max/Covid_Dashboard",
+            "liveUrl": ""
+        },
+        {
+            "id": "proj-5",
+            "title": "Class Attendance Tracker (PWA)",
+            "description": "A lightweight web-based system for managing and tracking attendance records efficiently. Features offline capabilities with local sync and smart insights.",
+            "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdHRlbmRhbmNlfGVufDB8fHx8MTcyMzc1OTAy&ixlib=rb-4.0.3&q=80&w=1080",
+            "tags": [],
+            "githubUrl": "https://github.com/binodbishwakarama-max/attendance-tracker",
+            "liveUrl": "https://binodbishwakarama-max.github.io/attendance-tracker/"
+        }
+    ],
+    "skills": [
+        {
+            "id": "cat-1",
+            "category": "Programming Languages",
+            "iconName": "Code2",
+            "skills": [
+                "Python",
+                "Java",
+                "C",
+                "JavaScript (ES6)"
+            ]
+        },
+        {
+            "id": "cat-2",
+            "category": "Web Development",
+            "iconName": "Globe",
+            "skills": [
+                "HTML5",
+                "CSS3",
+                "Responsive Web Design",
+                "Progressive Web Apps (PWAs)",
+                "Front-End Development"
+            ]
+        },
+        {
+            "id": "cat-3",
+            "category": "Computer Science Core(Learning)",
+            "iconName": "Server",
+            "skills": [
+                "Data Structures",
+                "Algorithms",
+                "Object-Oriented Programming (OOP)",
+                "Software Development"
+            ]
+        },
+        {
+            "id": "cat-4",
+            "category": "Tools & Workflow",
+            "iconName": "Layout",
+            "skills": [
+                "SQL",
+                "AutoCAD",
+                "Git",
+                "GitHub",
+                "Claude"
+            ]
+        }
+    ]
+}
