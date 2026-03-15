@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://buildwithbinod.com/sitemap.xml
+Sitemap: https://build-with-binod-portfolio.vercel.app/sitemap.xml

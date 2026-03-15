@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://buildwithbinod.com/</loc>
+    <loc>https://build-with-binod-portfolio.vercel.app/</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -12,19 +12,19 @@
        If it uses specific paths, adjust as necessary. If it's pure SPA on index path, just the root is crawled, 
        but standardizing some generic paths based on the prompt's request. -->
   <url>
-    <loc>https://buildwithbinod.com/projects</loc>
+    <loc>https://build-with-binod-portfolio.vercel.app/projects</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildwithbinod.com/blog</loc>
+    <loc>https://build-with-binod-portfolio.vercel.app/blog</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildwithbinod.com/contact</loc>
+    <loc>https://build-with-binod-portfolio.vercel.app/contact</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
