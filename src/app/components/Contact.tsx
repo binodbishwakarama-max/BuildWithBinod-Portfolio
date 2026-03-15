@@ -60,7 +60,7 @@ export function Contact() {
       <div className="max-w-[1440px] w-full mx-auto px-8" ref={revealRef}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-4 tracking-tight text-foreground">
-            Get In Touch
+            Contact
           </h2>
           <p className="text-center text-lg mb-16 text-muted-foreground">
             Let's discuss your next project

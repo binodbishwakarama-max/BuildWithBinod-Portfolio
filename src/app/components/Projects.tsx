@@ -50,7 +50,7 @@ export function Projects() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
-              Featured Work
+              Projects
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
               A curated selection of my recent projects, showcasing scalable architecture and refined user experiences.

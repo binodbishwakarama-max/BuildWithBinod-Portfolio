@@ -43,7 +43,7 @@ export function Skills() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
-              Technical Arsenal
+              Skills
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
               The core technologies and tools I leverage to engineer robust, scalable solutions.

@@ -1,5 +1,5 @@
-import { ArrowRight } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ArrowRight } from "lucide-react";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 export function Hero() {
   const revealRef = useScrollReveal();
@@ -7,7 +7,7 @@ export function Hero() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -24,29 +24,34 @@ export function Hero() {
             Elevating Digital Experiences
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] font-extrabold tracking-tighter mb-8 text-foreground leading-[1.05] drop-shadow-sm">
-            Engineer The <span className="px-2 sm:px-3 text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Future</span>
-          </h1>
+          <h1 className="sr-only">BuildWithBinod – Software Developer Portfolio</h1>
+          
+          <div className="text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] font-extrabold tracking-tighter mb-8 text-foreground leading-[1.05] drop-shadow-sm" aria-hidden="true">
+            BuildWithBinod{" "}
+            <span className="px-2 sm:px-3 text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
+              Portfolio
+            </span>
+          </div>
 
           <div className="max-w-2xl mb-12">
             <p className="text-xl md:text-2xl mb-4 text-foreground/80 font-medium">
-              Full Stack Developer & AI/ML Enthusiast
+              Software Developer Portfolio
             </p>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Architecting end-to-end web applications and integrating intelligent machine learning models to build the next generation of digital products.
+              I am Binod, building high-performance web apps, tools, and startup products. Using React, Node, Python, and robust Cloud Architecture, I craft the next generation of scalable digital applications. Dive into BuildWithBinod to explore my technical journey.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-4 w-full sm:w-auto">
             <button
-              onClick={() => scrollToSection('projects')}
+              onClick={() => scrollToSection("projects")}
               className="w-full sm:w-auto px-8 py-4 rounded-full font-medium transition-all hover:scale-105 flex items-center justify-center gap-2 bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5"
             >
               View My Work
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection("contact")}
               className="w-full sm:w-auto px-8 py-4 rounded-full font-medium transition-all hover:bg-card border border-border text-foreground hover:border-foreground/30"
             >
               Contact Me

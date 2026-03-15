@@ -1,14 +1,17 @@
+import { Suspense, lazy } from 'react';
 import { Navigation } from './components/Navigation';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Skills } from './components/Skills';
-import { Projects } from './components/Projects';
-import { Experience } from './components/Experience';
-import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { PortfolioProvider } from './context/PortfolioContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ParticleBackground } from './components/ParticleBackground';
+
+const Hero = lazy(() => import('./components/Hero').then(module => ({ default: module.Hero })));
+const About = lazy(() => import('./components/About').then(module => ({ default: module.About })));
+const Skills = lazy(() => import('./components/Skills').then(module => ({ default: module.Skills })));
+const Projects = lazy(() => import('./components/Projects').then(module => ({ default: module.Projects })));
+const Experience = lazy(() => import('./components/Experience').then(module => ({ default: module.Experience })));
+const Blog = lazy(() => import('./components/Blog').then(module => ({ default: module.Blog })));
+const Contact = lazy(() => import('./components/Contact').then(module => ({ default: module.Contact })));
 
 export default function App() {
   return (
@@ -18,12 +21,15 @@ export default function App() {
           <ParticleBackground />
           <Navigation />
           <main>
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Contact />
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading section...</div>}>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Blog />
+              <Contact />
+            </Suspense>
           </main>
           <Footer />
         </div>

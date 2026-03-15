@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://buildwithbinod.com/</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Projects Section (Using fragments generally isn't indexable directly as separate pages, but representing main sub-views if using pure routing) -->
+  <!-- Assuming single page application with hash routing or scroll routing based on earlier investigation.
+       If it uses specific paths, adjust as necessary. If it's pure SPA on index path, just the root is crawled, 
+       but standardizing some generic paths based on the prompt's request. -->
+  <url>
+    <loc>https://buildwithbinod.com/projects</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildwithbinod.com/blog</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildwithbinod.com/contact</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

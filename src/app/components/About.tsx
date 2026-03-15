@@ -9,7 +9,7 @@ export function About() {
       <div className="max-w-[1440px] w-full mx-auto px-8" ref={revealRef}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 tracking-tight text-foreground">
-            About Me
+            About Binod
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="flex justify-center lg:justify-end">
