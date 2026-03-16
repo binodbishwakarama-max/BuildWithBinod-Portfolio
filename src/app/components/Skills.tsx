@@ -38,14 +38,14 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="py-32 bg-background transition-colors duration-300">
-      <div className="max-w-[1440px] w-full mx-auto px-8" ref={revealRef}>
+    <section id="skills" className="py-20 sm:py-24 lg:py-32 bg-background transition-colors duration-300">
+      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
         <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
+          <div className="mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
               Skills
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
               The core technologies and tools I leverage to engineer robust, scalable solutions.
             </p>
           </div>
@@ -55,7 +55,7 @@ export function Skills() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 auto-rows-min">
               {data.skills.map((category, index) => {
                 const Icon = iconMap[category.iconName as keyof typeof iconMap] || Code2;
 
@@ -73,7 +73,7 @@ export function Skills() {
 
                 return (
                   <TiltCard key={category.id} className={`${getColSpan(index)} h-full`}>
-                    <div className="group bg-card/10 backdrop-blur-md rounded-[2rem] p-8 shadow-sm hover:shadow-[0_0_30px_rgba(37,99,235,0.1)] transition-all duration-500 border border-border/40 hover:border-accent/40 relative h-full flex flex-col justify-between overflow-hidden">
+                    <div className="group bg-card/10 backdrop-blur-3xl rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 lg:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-500 border border-white/10 dark:border-white/5 hover:border-white/20 dark:hover:border-white/10 relative h-full flex flex-col justify-between overflow-hidden">
                       {/* Subtle ambient background glow */}
                       <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-500"></div>
 
@@ -87,16 +87,16 @@ export function Skills() {
                       )}
 
                       <div className="relative z-10">
-                        <div className="flex items-center gap-4 mb-8">
-                          <div className="p-3 rounded-2xl bg-accent/10 border border-accent/20 group-hover:scale-110 transition-transform duration-500">
-                            <Icon className="w-8 h-8 text-accent" />
+                        <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                          <div className="p-2.5 sm:p-3 rounded-2xl bg-accent/10 border border-accent/20 group-hover:scale-110 transition-transform duration-500">
+                            <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-accent" />
                           </div>
-                          <h3 className="text-2xl font-bold tracking-tight text-foreground">
+                          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                             {category.category}
                           </h3>
                         </div>
 
-                        <div className="flex flex-wrap gap-2.5">
+                        <div className="flex flex-wrap gap-2">
                           {category.skills.map((skill) => (
                             <span
                               key={skill}
@@ -135,7 +135,7 @@ export function Skills() {
             <div className="mt-12 flex justify-center">
               <button
                 onClick={handleAddCategory}
-                className="flex items-center gap-2 px-8 py-4 rounded-full border-2 border-dashed border-border/50 hover:border-accent hover:text-accent transition-colors text-muted-foreground font-medium"
+                className="flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full border-2 border-dashed border-border/50 hover:border-accent hover:text-accent transition-colors text-muted-foreground font-medium"
               >
                 <Plus size={20} />
                 Add Skill Domain

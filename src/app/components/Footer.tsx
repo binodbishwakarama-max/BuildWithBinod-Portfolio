@@ -23,17 +23,17 @@ export function Footer() {
 
   return (
     <footer className="py-8 bg-card border-t border-border transition-colors duration-300">
-      <div className="max-w-[1440px] w-full mx-auto px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-center md:text-left">
           <p className="text-sm text-card-foreground">
-            © {currentYear} Binod Bishwakarma. All rights reserved.
+            (c) {currentYear} Binod Bishwakarma. All rights reserved.
           </p>
           <div className="text-sm text-card-foreground flex justify-end">
             <button
               onClick={handleAdminClick}
               className="opacity-20 hover:opacity-100 transition-opacity text-xs"
             >
-              {isAdmin ? '(Admin Active - Logout)' : 'π'}
+              {isAdmin ? '(Admin Active - Logout)' : 'pi'}
             </button>
           </div>
         </div>

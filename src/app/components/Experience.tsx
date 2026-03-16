@@ -33,44 +33,44 @@ export function Experience() {
   const revealRef = useScrollReveal();
 
   return (
-    <section id="experience" className="py-24 bg-muted transition-colors duration-300">
-      <div className="max-w-[1440px] w-full mx-auto px-8" ref={revealRef}>
+    <section id="experience" className="py-20 sm:py-24 bg-muted transition-colors duration-300">
+      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-4 tracking-tight text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 tracking-tight text-foreground">
             Experience & Education
           </h2>
-          <p className="text-center text-lg mb-16 text-muted-foreground">
+          <p className="text-center text-base sm:text-lg mb-12 sm:mb-16 text-muted-foreground">
             My professional journey
           </p>
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-accent/20"></div>
+            <div className="absolute left-5 sm:left-8 top-0 bottom-0 w-0.5 bg-accent/20"></div>
 
             {experiences.map((exp, index) => {
               const Icon = exp.type === 'work' ? Briefcase : GraduationCap;
               return (
-                <div key={index} className="relative mb-12 pl-20">
+                <div key={index} className="relative mb-8 sm:mb-12 pl-14 sm:pl-20">
                   {/* Timeline dot */}
-                  <div className="absolute left-0 p-3 rounded-full shadow-lg bg-accent text-accent-foreground">
-                    <Icon className="w-6 h-6" />
+                  <div className="absolute left-0 p-2.5 sm:p-3 rounded-full shadow-lg bg-accent text-accent-foreground">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
 
                   {/* Content card */}
-                  <div className="bg-card rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-border">
+                  <div className="bg-card rounded-[1.25rem] p-5 sm:p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-border">
                     <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
                       <div>
-                        <h3 className="text-xl font-bold tracking-tight text-card-foreground">
+                        <h3 className="text-lg sm:text-xl font-bold tracking-tight text-card-foreground">
                           {exp.title}
                         </h3>
-                        <p className="text-lg font-medium mt-1 text-accent">
+                        <p className="text-base sm:text-lg font-medium mt-1 text-accent">
                           {exp.company}
                         </p>
                       </div>
-                      <span className="px-4 py-1 rounded-full text-sm font-medium bg-accent/10 text-card-foreground">
+                      <span className="w-full sm:w-auto px-4 py-1 rounded-full text-xs sm:text-sm font-medium bg-accent/10 text-card-foreground">
                         {exp.period}
                       </span>
                     </div>
-                    <p className="mb-4 leading-relaxed text-muted-foreground">
+                    <p className="mb-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
                       {exp.description}
                     </p>
                     <ul className="space-y-2">

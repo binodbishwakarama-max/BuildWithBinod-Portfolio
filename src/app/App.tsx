@@ -3,7 +3,7 @@ import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { PortfolioProvider } from './context/PortfolioContext';
 import { ThemeProvider } from './context/ThemeContext';
-import { ParticleBackground } from './components/ParticleBackground';
+import { LiquidBackground } from './components/LiquidBackground';
 
 const Hero = lazy(() => import('./components/Hero').then(module => ({ default: module.Hero })));
 const About = lazy(() => import('./components/About').then(module => ({ default: module.About })));
@@ -18,7 +18,7 @@ export default function App() {
     <ThemeProvider>
       <PortfolioProvider>
         <div className="min-h-screen bg-background text-foreground transition-colors duration-300 relative">
-          <ParticleBackground />
+          <LiquidBackground />
           <Navigation />
           <main>
             <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading section...</div>}>
@@ -37,3 +37,4 @@ export default function App() {
     </ThemeProvider>
   );
 }
+

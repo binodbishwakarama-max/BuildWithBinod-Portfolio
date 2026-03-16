@@ -62,14 +62,14 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="py-32 bg-background transition-colors duration-300">
-      <div className="max-w-[1440px] w-full mx-auto px-8" ref={revealRef}>
+    <section id="projects" className="py-20 sm:py-24 lg:py-32 bg-background transition-colors duration-300">
+      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
         <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
+          <div className="mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
               Projects
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
               A curated selection of my recent projects, showcasing scalable architecture and refined user experiences.
             </p>
           </div>
@@ -79,7 +79,7 @@ export function Projects() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-[380px] sm:auto-rows-[420px] lg:auto-rows-[450px]">
+            <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 sm:gap-6 auto-rows-[380px] sm:auto-rows-[420px] lg:auto-rows-[450px]">
               {projects.map((project, index) => {
                 const getLayout = (i: number) => {
                   switch (i % 5) {
@@ -103,7 +103,7 @@ export function Projects() {
                       )}
 
                       {editingId === project.id ? (
-                        <div className="p-8 flex flex-col gap-4 text-card-foreground absolute inset-0 z-40 bg-card overflow-auto">
+                        <div className="p-6 sm:p-8 flex flex-col gap-4 text-card-foreground absolute inset-0 z-40 bg-card overflow-auto">
                           <label className="font-bold">Title</label>
                           <input className="border border-border bg-input p-2 rounded text-foreground" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
                           <label className="font-bold">Description</label>
@@ -128,15 +128,15 @@ export function Projects() {
                             <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/60 to-background/10 md:from-background/90 md:via-background/40 dark:from-background dark:via-background/80 md:to-transparent"></div>
                           </div>
 
-                          <div className="relative z-10 w-full h-full p-8 flex flex-col justify-end">
+                          <div className="relative z-10 w-full h-full p-6 sm:p-8 flex flex-col justify-end">
                             <div className="transform transition-transform duration-300 md:translate-y-4 md:group-hover:-translate-y-4">
-                              <h3 className="text-3xl font-bold mb-3 tracking-tighter text-foreground drop-shadow-md">
+                              <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tighter text-foreground drop-shadow-md">
                                 {project.title}
                               </h3>
-                              <p className="mb-6 leading-relaxed text-muted-foreground line-clamp-2 md:line-clamp-3 md:group-hover:line-clamp-none transition-all duration-300">
+                              <p className="mb-5 sm:mb-6 leading-relaxed text-sm sm:text-base text-muted-foreground line-clamp-3 md:line-clamp-3 md:group-hover:line-clamp-none transition-all duration-300">
                                 {project.description}
                               </p>
-                              <div className="flex flex-wrap gap-2 mb-6">
+                              <div className="flex flex-wrap gap-2 mb-5 sm:mb-6">
                                 {project.tags.map((tag) => (
                                   <span key={tag} className="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-foreground/90 backdrop-blur-md">
                                     {tag}
@@ -170,7 +170,7 @@ export function Projects() {
             <div className="mt-12 flex justify-center">
               <button
                 onClick={handleAddNew}
-                className="flex items-center gap-2 px-8 py-4 rounded-full border-2 border-dashed border-border/50 hover:border-accent hover:text-accent transition-colors text-muted-foreground font-medium"
+                className="flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full border-2 border-dashed border-border/50 hover:border-accent hover:text-accent transition-colors text-muted-foreground font-medium"
               >
                 <Plus size={20} />
                 Add New Project

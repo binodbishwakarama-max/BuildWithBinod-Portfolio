@@ -114,6 +114,9 @@
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
   }
 
   /**
@@ -168,6 +171,10 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
+
+  img {
+    max-width: 100%;
+  }
 }
 
 @layer utilities {
@@ -181,5 +188,38 @@
   .reveal-visible {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+
+  .animate-blob {
+    animation: blob 20s infinite alternate ease-in-out;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-hidden,
+  .reveal-visible,
+  .animate-blob {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
   }
 }

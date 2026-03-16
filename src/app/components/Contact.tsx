@@ -56,24 +56,24 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-card transition-colors duration-300">
-      <div className="max-w-[1440px] w-full mx-auto px-8" ref={revealRef}>
+    <section id="contact" className="py-20 sm:py-24 bg-card transition-colors duration-300">
+      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-4 tracking-tight text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 tracking-tight text-foreground">
             Contact
           </h2>
-          <p className="text-center text-lg mb-16 text-muted-foreground">
+          <p className="text-center text-base sm:text-lg mb-12 sm:mb-16 text-muted-foreground">
             Let's discuss your next project
           </p>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8 rounded-[1.5rem] border border-white/10 dark:border-white/5 bg-background/40 backdrop-blur-2xl p-6 sm:p-8">
               <div>
-                <h3 className="text-2xl font-bold mb-6 tracking-tight text-foreground">
+                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 tracking-tight text-foreground">
                   Contact Information
                 </h3>
-                <p className="leading-relaxed mb-8 text-muted-foreground">
+                <p className="text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 text-muted-foreground">
                   I'm always interested in hearing about new projects and opportunities.
                   Whether you have a question or just want to say hi, feel free to reach out!
                 </p>
@@ -88,7 +88,7 @@ export function Contact() {
                     <p className="text-sm text-muted-foreground">
                       Email
                     </p>
-                    <p className="font-medium text-foreground">
+                    <p className="font-medium text-foreground break-all">
                       binodbishwakarama@gmail.com
                     </p>
                   </div>
@@ -118,7 +118,7 @@ export function Contact() {
                     href="https://github.com/binodbishwakarama-max"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
+                    className="w-12 h-12 flex items-center justify-center rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
                   >
                     <Github className="w-6 h-6" />
                   </a>
@@ -126,13 +126,13 @@ export function Contact() {
                     href="https://www.linkedin.com/in/binod-bishwakarma-417612380/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
+                    className="w-12 h-12 flex items-center justify-center rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
                   >
                     <Linkedin className="w-6 h-6" />
                   </a>
                   <a
                     href="mailto:binodbishwakarama@gmail.com"
-                    className="p-3 rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
+                    className="w-12 h-12 flex items-center justify-center rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
                   >
                     <Mail className="w-6 h-6" />
                   </a>
@@ -141,7 +141,7 @@ export function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div>
+            <div className="rounded-[1.5rem] border border-white/10 dark:border-white/5 bg-background/40 backdrop-blur-2xl p-6 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
@@ -222,7 +222,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting || submitStatus === 'success'}
-                  className={`w-full px-6 py-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${isSubmitting
+                  className={`w-full px-6 py-4 rounded-xl font-medium transition-all flex items-center justify-center gap-2 ${isSubmitting
                       ? 'bg-accent/50 cursor-not-allowed text-accent-foreground'
                       : submitStatus === 'success'
                         ? 'bg-green-500 text-white cursor-default'
