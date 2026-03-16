@@ -3,45 +3,75 @@
         {
             "id": "proj-1",
             "title": "MindFlow AI Study Assistant",
-            "description": "A comprehensive AI-powered study platform featuring flashcards, quizzes, and PDF upload capabilities. Includes a gamification system and a modern glassmorphism UI.",
-            "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlfGVufDB8fHx8MTcyMzc2MzMzNw&ixlib=rb-4.0.3&q=80&w=1080",
-            "tags": [],
+            "description": "An AI-powered study platform that turns learning into an interactive workflow with flashcards, quizzes, PDF uploads, and a gamified interface built to keep revision engaging.",
+            "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20900%22%3E%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20fill%3D%22%23081226%22%2F%3E%20%20%3Ccircle%20cx%3D%221040%22%20cy%3D%22170%22%20r%3D%22210%22%20fill%3D%22%237CFFDB%22%20fill-opacity%3D%220.16%22%2F%3E%20%20%3Ccircle%20cx%3D%22220%22%20cy%3D%22760%22%20r%3D%22230%22%20fill%3D%22%232B8DFF%22%20fill-opacity%3D%220.18%22%2F%3E%20%20%3Crect%20x%3D%2282%22%20y%3D%2296%22%20width%3D%22250%22%20height%3D%2242%22%20rx%3D%2221%22%20fill%3D%22%23A8FFF1%22%20fill-opacity%3D%220.16%22%20stroke%3D%22%23B3FFF2%22%20stroke-opacity%3D%220.45%22%2F%3E%20%20%3Ctext%20x%3D%22108%22%20y%3D%22123%22%20fill%3D%22%23D8FFFB%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20letter-spacing%3D%222%22%3EAI%20STUDY%20PLATFORM%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2282%22%20y%3D%22292%22%20fill%3D%22white%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2282%22%20font-weight%3D%22700%22%3EMindFlow%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2282%22%20y%3D%22366%22%20fill%3D%22%23CBE9FF%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22600%22%3EStudy%20Assistant%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22470%22%20fill%3D%22%23D6E8F7%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2224%22%3EFlashcards%2C%20quizzes%2C%20PDF%20uploads%2C%20and%20gamified%20revision%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "tags": [
+                "AI Study Tools",
+                "Flashcards",
+                "Quizzes",
+                "PDF Upload",
+                "Gamification"
+            ],
             "githubUrl": "https://github.com/binodbishwakarama-max/Aistudy",
             "liveUrl": "https://smartstudy-nu.vercel.app/"
         },
         {
             "id": "proj-2",
             "title": "AI Health PWA",
-            "description": "An installable Progressive Web App (PWA) designed for healthcare assistance. It integrates AI Chat, Voice-to-Text, and Text-to-Speech functionalities using Gemini AI.",
-            "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlfGVufDB8fHx8MTcyMzc2MzM2NA&ixlib=rb-4.0.3&q=80&w=1080",
-            "tags": [],
+            "description": "A healthcare-focused Progressive Web App that combines AI chat, voice input, and spoken responses to make support more accessible across mobile and installable experiences.",
+            "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20900%22%3E%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20fill%3D%22%23071821%22%2F%3E%20%20%3Ccircle%20cx%3D%22990%22%20cy%3D%22190%22%20r%3D%22190%22%20fill%3D%22%2397FFE0%22%20fill-opacity%3D%220.14%22%2F%3E%20%20%3Ccircle%20cx%3D%22176%22%20cy%3D%22742%22%20r%3D%22216%22%20fill%3D%22%232DE0B8%22%20fill-opacity%3D%220.12%22%2F%3E%20%20%3Crect%20x%3D%2284%22%20y%3D%2298%22%20width%3D%22214%22%20height%3D%2242%22%20rx%3D%2221%22%20fill%3D%22%23D9FFF6%22%20fill-opacity%3D%220.16%22%20stroke%3D%22%23E6FFF9%22%20stroke-opacity%3D%220.45%22%2F%3E%20%20%3Ctext%20x%3D%22110%22%20y%3D%22124%22%20fill%3D%22%23E7FFF9%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20letter-spacing%3D%222%22%3EPWA%20HEALTHCARE%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22292%22%20fill%3D%22white%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2284%22%20font-weight%3D%22700%22%3EAI%20Health%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22366%22%20fill%3D%22%23D9F5EF%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22600%22%3EVoice-first%20care%20assistant%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22470%22%20fill%3D%22%23D2E7E5%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2224%22%3EAI%20chat%2C%20speech%20input%2C%20and%20spoken%20responses%20in%20a%20mobile-ready%20app%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "tags": [
+                "Progressive Web App",
+                "AI Chat",
+                "Voice Input",
+                "Text to Speech",
+                "Healthcare"
+            ],
             "githubUrl": "https://github.com/binodbishwakarama-max/Aihealth",
             "liveUrl": "https://aihealth-ijnb.vercel.app/"
         },
         {
             "id": "proj-3",
             "title": "Smart News App",
-            "description": "A full-stack news application that provides a seamless reading experience with advanced search and discovery features. Deployed via Docker containers.",
-            "image": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXdzfGVufDB8fHx8MTcyMzc2MzQwMg&ixlib=rb-4.0.3&q=80&w=1080",
-            "tags": [],
+            "description": "A full-stack news platform built for cleaner reading, faster search, and smarter story discovery, with containerized deployment for a more reliable delivery workflow.",
+            "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20900%22%3E%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20fill%3D%22%2310111C%22%2F%3E%20%20%3Ccircle%20cx%3D%221080%22%20cy%3D%22130%22%20r%3D%22220%22%20fill%3D%22%23FF8DE1%22%20fill-opacity%3D%220.16%22%2F%3E%20%20%3Ccircle%20cx%3D%22264%22%20cy%3D%22790%22%20r%3D%22240%22%20fill%3D%22%237E5FFF%22%20fill-opacity%3D%220.18%22%2F%3E%20%20%3Crect%20x%3D%2284%22%20y%3D%2298%22%20width%3D%22194%22%20height%3D%2242%22%20rx%3D%2221%22%20fill%3D%22%23F6D8FF%22%20fill-opacity%3D%220.14%22%20stroke%3D%22%23FFE6FF%22%20stroke-opacity%3D%220.34%22%2F%3E%20%20%3Ctext%20x%3D%22111%22%20y%3D%22124%22%20fill%3D%22%23FFE6FF%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20letter-spacing%3D%222%22%3EFULL%20STACK%20NEWS%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22292%22%20fill%3D%22white%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2284%22%20font-weight%3D%22700%22%3ESmart%20News%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22366%22%20fill%3D%22%23F7DBFF%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22600%22%3ESearch%20and%20discover%20stories%20faster%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22470%22%20fill%3D%22%23E8D8EC%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2224%22%3EA%20clean%20reading%20experience%20with%20smarter%20discovery%20and%20Docker%20deployment%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "tags": [
+                "Full Stack",
+                "Search",
+                "Content Discovery",
+                "Docker",
+                "News Platform"
+            ],
             "githubUrl": "https://github.com/binodbishwakarama-max/smartnews",
             "liveUrl": ""
         },
         {
             "id": "proj-4",
             "title": "Covid-19 Data Dashboard",
-            "description": "A data visualization platform for tracking and analyzing global Covid-19 statistics in real-time.",
-            "image": "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3JvbmF2aXJ1c3xlbnwwfHx8fDE3MjM3NjM0Mjk&ixlib=rb-4.0.3&q=80&w=1080",
-            "tags": [],
+            "description": "A real-time analytics dashboard for tracking global Covid-19 trends through interactive charts, summarized metrics, and data-driven views designed for quick understanding.",
+            "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20900%22%3E%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20fill%3D%22%23130F1E%22%2F%3E%20%20%3Ccircle%20cx%3D%221038%22%20cy%3D%22174%22%20r%3D%22210%22%20fill%3D%22%23FF758F%22%20fill-opacity%3D%220.15%22%2F%3E%20%20%3Ccircle%20cx%3D%22212%22%20cy%3D%22752%22%20r%3D%22216%22%20fill%3D%22%236E68FF%22%20fill-opacity%3D%220.14%22%2F%3E%20%20%3Crect%20x%3D%2284%22%20y%3D%2298%22%20width%3D%22246%22%20height%3D%2242%22%20rx%3D%2221%22%20fill%3D%22%23FFD7E0%22%20fill-opacity%3D%220.14%22%20stroke%3D%22%23FFE4EA%22%20stroke-opacity%3D%220.34%22%2F%3E%20%20%3Ctext%20x%3D%22109%22%20y%3D%22124%22%20fill%3D%22%23FFE8EE%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20letter-spacing%3D%222%22%3EREAL-TIME%20ANALYTICS%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22292%22%20fill%3D%22white%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2278%22%20font-weight%3D%22700%22%3ECovid-19%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22366%22%20fill%3D%22%23F6D9E1%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22600%22%3EData%20Dashboard%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22470%22%20fill%3D%22%23E7D7E2%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2224%22%3EInteractive%20charts%20and%20tracking%20views%20for%20monitoring%20global%20case%20trends%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "tags": [
+                "Dashboard",
+                "Data Visualization",
+                "Analytics",
+                "API Data",
+                "Real Time Tracking"
+            ],
             "githubUrl": "https://github.com/binodbishwakarama-max/Covid_Dashboard",
             "liveUrl": ""
         },
         {
             "id": "proj-5",
             "title": "Class Attendance Tracker (PWA)",
-            "description": "A lightweight web-based system for managing and tracking attendance records efficiently. Features offline capabilities with local sync and smart insights.",
-            "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdHRlbmRhbmNlfGVufDB8fHx8MTcyMzc1OTAy&ixlib=rb-4.0.3&q=80&w=1080",
-            "tags": [],
+            "description": "A lightweight attendance management PWA for recording class presence, working offline, and syncing local data through a simple workflow built for everyday student use.",
+            "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20900%22%3E%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20fill%3D%22%230D1724%22%2F%3E%20%20%3Ccircle%20cx%3D%221000%22%20cy%3D%22180%22%20r%3D%22214%22%20fill%3D%22%239CFFD5%22%20fill-opacity%3D%220.13%22%2F%3E%20%20%3Ccircle%20cx%3D%22216%22%20cy%3D%22768%22%20r%3D%22228%22%20fill%3D%22%234CA6FF%22%20fill-opacity%3D%220.16%22%2F%3E%20%20%3Crect%20x%3D%2284%22%20y%3D%2298%22%20width%3D%22216%22%20height%3D%2242%22%20rx%3D%2221%22%20fill%3D%22%23DFFFEF%22%20fill-opacity%3D%220.14%22%20stroke%3D%22%23E9FFF6%22%20stroke-opacity%3D%220.34%22%2F%3E%20%20%3Ctext%20x%3D%22111%22%20y%3D%22124%22%20fill%3D%22%23E8FFF6%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20letter-spacing%3D%222%22%3EOFFLINE-FIRST%20PWA%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22292%22%20fill%3D%22white%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2278%22%20font-weight%3D%22700%22%3EAttendance%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22366%22%20fill%3D%22%23D8FFF0%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22600%22%3ETracker%20for%20classes%3C%2Ftext%3E%20%20%3Ctext%20x%3D%2284%22%20y%3D%22470%22%20fill%3D%22%23D4E6E6%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2224%22%3EA%20simple%20mobile%20workflow%20for%20recording%20presence%2C%20syncing%20data%2C%20and%20staying%20organized%3C%2Ftext%3E%3C%2Fsvg%3E",
+            "tags": [
+                "Progressive Web App",
+                "Attendance Tracking",
+                "Offline Support",
+                "Local Sync",
+                "Student Productivity"
+            ],
             "githubUrl": "https://github.com/binodbishwakarama-max/attendance-tracker",
             "liveUrl": "https://binodbishwakarama-max.github.io/attendance-tracker/"
         }

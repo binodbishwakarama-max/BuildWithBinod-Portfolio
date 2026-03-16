@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
+const PORTFOLIO_DATA_VERSION = '2026-03-16-project-polish';
+
 // Define the Data Types
 export interface Project {
     id: string;
@@ -55,20 +57,23 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
             setError(null);
 
             try {
-                // First check local storage for edits
+                const response = await fetch('/data/portfolio.json');
+                if (!response.ok) throw new Error('Failed to fetch portfolio data: ' + response.statusText);
+
+                const jsonData = await response.json();
                 const savedData = localStorage.getItem('portfolioData');
-                if (savedData) {
+                const savedVersion = localStorage.getItem('portfolioDataVersion');
+
+                // Only reuse saved edits when they match the current portfolio data version.
+                if (savedData && savedVersion === PORTFOLIO_DATA_VERSION) {
                     setData(JSON.parse(savedData) as PortfolioData);
                     setIsLoading(false);
                     return;
                 }
 
-                // If no local storage exists, fetch the baseline JSON
-                const response = await fetch('/data/portfolio.json');
-                if (!response.ok) throw new Error('Failed to fetch portfolio data: ' + response.statusText);
-
-                const jsonData = await response.json();
                 setData(jsonData);
+                localStorage.setItem('portfolioData', JSON.stringify(jsonData));
+                localStorage.setItem('portfolioDataVersion', PORTFOLIO_DATA_VERSION);
             } catch (err: any) {
                 console.error('Data loading error:', err);
                 setError(err.message || 'Error loading data');
@@ -83,6 +88,7 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     const syncToStorage = (newData: PortfolioData) => {
         setData(newData);
         localStorage.setItem('portfolioData', JSON.stringify(newData));
+        localStorage.setItem('portfolioDataVersion', PORTFOLIO_DATA_VERSION);
     };
 
     // Check admin session on load

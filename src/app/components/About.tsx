@@ -1,5 +1,23 @@
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useScrollReveal } from "../hooks/useScrollReveal";
+
+const personalHighlights = [
+  {
+    title: "Who I Am",
+    description:
+      "A first-year Computer Science student and builder focused on real full-stack and AI products, not demo-only concepts.",
+  },
+  {
+    title: "What I Build",
+    description:
+      "AI study tools, healthcare PWAs, dashboards, and web products shaped around practical problems and usable workflows.",
+  },
+  {
+    title: "What I Enjoy",
+    description:
+      "Turning rough ideas into working software, solving product problems step by step, and experimenting with new AI-driven experiences.",
+  },
+];
 
 export function About() {
   const revealRef = useScrollReveal();
@@ -16,51 +34,47 @@ export function About() {
               <div className="relative group">
                 <div
                   className="absolute inset-0 rounded-[2rem] bg-accent/20 blur-xl group-hover:bg-accent/30 transition-colors duration-500"
-                  style={{ transform: 'translate(16px, 16px)' }}
+                  style={{ transform: "translate(16px, 16px)" }}
                 ></div>
-                <div className="absolute inset-0 rounded-[2rem] border border-border bg-card/50 backdrop-blur-sm" style={{ transform: 'translate(12px, 12px)' }}></div>
+                <div
+                  className="absolute inset-0 rounded-[2rem] border border-white/10 dark:border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] bg-card/10 backdrop-blur-3xl"
+                  style={{ transform: "translate(12px, 12px)" }}
+                ></div>
                 <ImageWithFallback
                   src="/profile.jpeg"
                   alt="Binod Bishwakarma - Software Developer"
-                  className="relative rounded-[2rem] w-full max-w-md object-cover shadow-2xl border border-border/50 hover:border-accent/50 transition-colors duration-500"
-                  style={{ aspectRatio: '4/5', objectFit: 'cover', objectPosition: 'center' }}
+                  className="relative rounded-[2rem] w-full max-w-md object-cover shadow-2xl border border-white/10 dark:border-white/5 transition-colors duration-500"
+                  style={{ aspectRatio: "4/5", objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
             </div>
             <div className="space-y-8">
               <div className="space-y-5">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-snug">
-                  I engineer platforms at the intersection of <span className="text-accent text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Web</span> and <span className="text-accent text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">AI</span>.
+                  I build products where <span className="text-accent text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">web engineering</span> and <span className="text-accent text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">artificial intelligence</span> work together.
                 </h3>
                 <p className="text-lg leading-relaxed text-muted-foreground">
-                  I am a first-year Computer Science & Engineering student at Dayananda Sagar University. However, my ambition extends far beyond the classroom. I am driven by an intense passion for architecting software solutions that are not only highly scalable, but deeply intelligent.
+                  I am a first-year Computer Science and Engineering student at Dayananda Sagar University, and I learn best by shipping. Projects like MindFlow AI Study Assistant, AI Health PWA, Smart News App, and my Class Attendance Tracker reflect the kind of work I like most: taking a real need, shaping the product, and turning it into something people can actually use.
                 </p>
                 <p className="text-lg leading-relaxed text-muted-foreground">
-                  My technical foundation spans C, Python, Java, and modern Full-Stack Web Development, heavily grounded in Data Structures and Algorithms. Whether I'm tackling algorithmic complexities on HackerRank or building production-ready apps like my Class Attendance PWA, I approach every line of code as an opportunity to solve a complex puzzle.
-                </p>
-                <p className="text-lg leading-relaxed text-muted-foreground">
-                  Currently, my focus is shifting towards the frontier of technology: integrating Machine Learning models into highly responsive, performant user interfaces.
+                  My foundation spans C, Python, Java, JavaScript, and modern web development, with a growing focus on AI and machine learning. What keeps me interested is the product thinking behind the code: understanding the problem, choosing the right workflow, and building software that feels purposeful from the first interaction.
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-8 pt-8 border-t border-border/30">
-                <div className="flex flex-col">
-                  <span className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-1">Full Stack</span>
-                  <span className="text-sm font-semibold tracking-wider text-muted-foreground uppercase">Engineering</span>
-                </div>
-                <div className="w-px bg-border/40 hidden sm:block"></div>
-                <div className="flex flex-col">
-                  <span className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-1">AI/ML</span>
-                  <span className="text-sm font-semibold tracking-wider text-muted-foreground uppercase">Focused Engineer</span>
-                </div>
-                <div className="w-px bg-border/40 hidden sm:block"></div>
-                <div className="flex flex-col relative">
-                  <span className="text-4xl md:text-5xl font-black tracking-tighter text-accent mb-1 flex items-baseline">
-                    100<span className="text-3xl ml-0.5">%</span>
-                  </span>
-                  <span className="text-sm font-semibold tracking-wider text-accent uppercase">Driven by Impact</span>
-                  <div className="absolute -inset-4 bg-accent/5 rounded-2xl blur-xl -z-10"></div>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 border-t border-border/30">
+                {personalHighlights.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[1.5rem] border border-white/10 dark:border-white/5 bg-background/40 backdrop-blur-2xl p-5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]"
+                  >
+                    <p className="text-sm font-semibold tracking-[0.18em] uppercase text-accent mb-3">
+                      {item.title}
+                    </p>
+                    <p className="text-sm leading-7 text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
