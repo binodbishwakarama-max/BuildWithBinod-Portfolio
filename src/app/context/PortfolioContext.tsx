@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-const PORTFOLIO_DATA_VERSION = '2026-03-16-project-polish';
+const PORTFOLIO_DATA_VERSION = '2026-03-16-real-project-images';
 
 // Define the Data Types
 export interface Project {

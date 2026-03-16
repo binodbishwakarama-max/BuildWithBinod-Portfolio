@@ -5,6 +5,119 @@ import { usePortfolio, Project } from '../context/PortfolioContext';
 import { TiltCard } from './ui/TiltCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
+type ArtworkTheme = {
+  base: string;
+  glow: string;
+  accent: string;
+  panel: string;
+  surface: string;
+  stroke: string;
+  detail: string;
+};
+
+const PROJECT_ART_THEMES: ArtworkTheme[] = [
+  {
+    base: '#081226',
+    glow: '#7CFFDB',
+    accent: '#2B8DFF',
+    panel: '#112347',
+    surface: '#DFF6FF',
+    stroke: '#9FE1FF',
+    detail: '#9AFBE5',
+  },
+  {
+    base: '#071821',
+    glow: '#97FFE0',
+    accent: '#2DE0B8',
+    panel: '#103036',
+    surface: '#E7FFF8',
+    stroke: '#9EF4D8',
+    detail: '#7AF4FF',
+  },
+  {
+    base: '#10111C',
+    glow: '#FF8DE1',
+    accent: '#7E5FFF',
+    panel: '#26193C',
+    surface: '#F9EAFF',
+    stroke: '#E7C4FF',
+    detail: '#FFC7EB',
+  },
+  {
+    base: '#130F1E',
+    glow: '#FF758F',
+    accent: '#6E68FF',
+    panel: '#2B1E45',
+    surface: '#FFEAF0',
+    stroke: '#F6B7C5',
+    detail: '#C6B8FF',
+  },
+  {
+    base: '#0D1724',
+    glow: '#9CFFD5',
+    accent: '#4CA6FF',
+    panel: '#163250',
+    surface: '#E6FFF3',
+    stroke: '#9CDAFF',
+    detail: '#A7FFE7',
+  },
+];
+
+const buildProjectBackdrop = (theme: ArtworkTheme) =>
+  `data:image/svg+xml;utf8,${encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none">
+      <defs>
+        <linearGradient id="panel" x1="160" y1="120" x2="1040" y2="780" gradientUnits="userSpaceOnUse">
+          <stop stop-color="${theme.surface}" stop-opacity="0.15" />
+          <stop offset="1" stop-color="${theme.panel}" stop-opacity="0.72" />
+        </linearGradient>
+        <linearGradient id="screen" x1="240" y1="220" x2="960" y2="660" gradientUnits="userSpaceOnUse">
+          <stop stop-color="${theme.surface}" stop-opacity="0.22" />
+          <stop offset="1" stop-color="${theme.surface}" stop-opacity="0.06" />
+        </linearGradient>
+        <linearGradient id="glow" x1="180" y1="260" x2="720" y2="640" gradientUnits="userSpaceOnUse">
+          <stop stop-color="${theme.accent}" stop-opacity="0.82" />
+          <stop offset="1" stop-color="${theme.detail}" stop-opacity="0.56" />
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="900" fill="${theme.base}" />
+      <circle cx="1040" cy="150" r="220" fill="${theme.glow}" fill-opacity="0.16" />
+      <circle cx="190" cy="760" r="260" fill="${theme.accent}" fill-opacity="0.14" />
+      <rect x="96" y="104" width="1008" height="692" rx="40" fill="url(#panel)" stroke="${theme.stroke}" stroke-opacity="0.26" />
+      <rect x="132" y="142" width="936" height="54" rx="27" fill="${theme.surface}" fill-opacity="0.09" />
+      <circle cx="170" cy="169" r="8" fill="${theme.detail}" fill-opacity="0.78" />
+      <circle cx="198" cy="169" r="8" fill="${theme.surface}" fill-opacity="0.72" />
+      <circle cx="226" cy="169" r="8" fill="${theme.accent}" fill-opacity="0.7" />
+      <rect x="258" y="156" width="236" height="24" rx="12" fill="${theme.surface}" fill-opacity="0.18" />
+      <rect x="152" y="228" width="428" height="252" rx="28" fill="url(#screen)" stroke="${theme.stroke}" stroke-opacity="0.2" />
+      <path d="M190 406L274 352L344 380L424 294L500 324L548 272" stroke="url(#glow)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+      <rect x="192" y="440" width="94" height="12" rx="6" fill="${theme.surface}" fill-opacity="0.16" />
+      <rect x="152" y="524" width="200" height="112" rx="24" fill="${theme.surface}" fill-opacity="0.1" />
+      <rect x="376" y="524" width="204" height="112" rx="24" fill="${theme.surface}" fill-opacity="0.08" />
+      <rect x="620" y="228" width="280" height="124" rx="26" fill="${theme.surface}" fill-opacity="0.12" stroke="${theme.stroke}" stroke-opacity="0.18" />
+      <rect x="652" y="262" width="128" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.18" />
+      <rect x="652" y="298" width="216" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.1" />
+      <rect x="928" y="228" width="108" height="124" rx="26" fill="${theme.accent}" fill-opacity="0.2" />
+      <rect x="620" y="384" width="416" height="252" rx="32" fill="${theme.surface}" fill-opacity="0.08" stroke="${theme.stroke}" stroke-opacity="0.16" />
+      <rect x="656" y="420" width="344" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.16" />
+      <rect x="656" y="456" width="228" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.1" />
+      <rect x="656" y="522" width="140" height="76" rx="20" fill="${theme.accent}" fill-opacity="0.2" />
+      <rect x="822" y="522" width="178" height="76" rx="20" fill="${theme.surface}" fill-opacity="0.12" />
+      <rect x="656" y="654" width="96" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.12" />
+      <rect x="152" y="676" width="220" height="20" rx="10" fill="${theme.surface}" fill-opacity="0.12" />
+    </svg>
+  `)}`;
+
+const DECORATIVE_PROJECT_ART = PROJECT_ART_THEMES.map(buildProjectBackdrop);
+
+const usesTextHeavyInlineSvg = (image: string) =>
+  image.startsWith('data:image/svg+xml') && image.includes('%3Ctext');
+
+const getProjectArtwork = (project: Project, index: number) =>
+  usesTextHeavyInlineSvg(project.image)
+    ? DECORATIVE_PROJECT_ART[index % DECORATIVE_PROJECT_ART.length]
+    : project.image;
+
 export function Projects() {
   const { data, isAdmin, addProject, deleteProject, updateProject, isLoading } = usePortfolio();
   const projects = data.projects;
@@ -83,14 +196,17 @@ export function Projects() {
               {projects.map((project, index) => {
                 const getLayout = (i: number) => {
                   switch (i % 5) {
-                    case 0: return "md:col-span-6 lg:col-span-8";
-                    case 1: return "md:col-span-6 lg:col-span-4";
-                    case 2: return "md:col-span-4 lg:col-span-4";
-                    case 3: return "md:col-span-4 lg:col-span-4";
-                    case 4: return "md:col-span-4 lg:col-span-4";
-                    default: return "md:col-span-6 lg:col-span-4";
+                    case 0: return 'md:col-span-6 lg:col-span-8';
+                    case 1: return 'md:col-span-6 lg:col-span-4';
+                    case 2: return 'md:col-span-4 lg:col-span-4';
+                    case 3: return 'md:col-span-4 lg:col-span-4';
+                    case 4: return 'md:col-span-4 lg:col-span-4';
+                    default: return 'md:col-span-6 lg:col-span-4';
                   }
                 };
+
+                const cardArtwork = getProjectArtwork(project, index);
+                const usesGeneratedArtwork = cardArtwork !== project.image;
 
                 return (
                   <TiltCard key={project.id} className={getLayout(index)}>
@@ -121,11 +237,16 @@ export function Projects() {
                         <>
                           <div className={`absolute inset-0 z-0 bg-gradient-to-br ${getArtworkBackdrop(index)} dark:from-background dark:via-background/30 dark:to-background`}>
                             <ImageWithFallback
-                              src={project.image}
+                              src={cardArtwork}
                               alt={project.title}
-                              className="w-full h-full object-contain object-center p-6 sm:p-4 md:p-0 md:object-cover opacity-95 md:opacity-90 dark:opacity-70 md:dark:opacity-40 transition-transform duration-700 md:group-hover:scale-105 md:group-hover:opacity-100 md:dark:group-hover:opacity-60"
+                              className={`w-full h-full object-cover object-center transition-transform duration-700 md:group-hover:scale-[1.04] md:group-hover:opacity-100 ${
+                                usesGeneratedArtwork
+                                  ? 'opacity-95 dark:opacity-55 md:dark:opacity-42'
+                                  : 'opacity-90 dark:opacity-60 md:dark:opacity-40'
+                              }`}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/60 to-background/10 md:from-background/90 md:via-background/40 dark:from-background dark:via-background/80 md:to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/96 via-background/70 to-background/12 md:from-background/94 md:via-background/52 md:to-transparent dark:from-background dark:via-background/82 dark:to-background/6"></div>
+                            <div className="absolute inset-y-0 left-0 w-[72%] bg-gradient-to-r from-background/30 via-background/8 to-transparent md:w-[54%]"></div>
                           </div>
 
                           <div className="relative z-10 w-full h-full p-6 sm:p-8 flex flex-col justify-end">
@@ -144,12 +265,12 @@ export function Projects() {
                                 ))}
                               </div>
                               <div className="flex flex-wrap gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                                {project.githubUrl && project.githubUrl !== "#" && (
+                                {project.githubUrl && project.githubUrl !== '#' && (
                                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full transition-all border border-border/50 text-foreground hover:bg-white/10 backdrop-blur-md font-medium text-sm">
                                     <Github className="w-4 h-4" /> Code
                                   </a>
                                 )}
-                                {project.liveUrl && project.liveUrl !== "#" && (
+                                {project.liveUrl && project.liveUrl !== '#' && (
                                   <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full transition-all bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5 font-medium text-sm">
                                     <ExternalLink className="w-4 h-4" /> Live Demo
                                   </a>
