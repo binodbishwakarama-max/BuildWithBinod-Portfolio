@@ -3,7 +3,7 @@
         {
             "id": "proj-1",
             "title": "MindFlow AI Study Assistant",
-            "description": "An AI-powered study platform that turns learning into an interactive workflow with flashcards, quizzes, PDF uploads, and a gamified interface built to keep revision engaging.",
+            "description": "Built an AI study workflow that lets students upload PDFs, generate flashcards and quizzes, and stay engaged through a gamified revision experience.",
             "image": "https://images.pexels.com/photos/33936499/pexels-photo-33936499.jpeg?cs=srgb&dl=pexels-minasenishino-33936499.jpg&fm=jpg",
             "tags": [
                 "AI Study Tools",
@@ -18,7 +18,7 @@
         {
             "id": "proj-2",
             "title": "AI Health PWA",
-            "description": "A healthcare-focused Progressive Web App that combines AI chat, voice input, and spoken responses to make support more accessible across mobile and installable experiences.",
+            "description": "Built a mobile-first healthcare PWA with AI chat, voice input, and spoken responses to make support more accessible across installable and on-the-go experiences.",
             "image": "https://images.pexels.com/photos/5207089/pexels-photo-5207089.jpeg?cs=srgb&dl=pexels-karola-g-5207089.jpg&fm=jpg",
             "tags": [
                 "Progressive Web App",
@@ -33,7 +33,7 @@
         {
             "id": "proj-3",
             "title": "Smart News App",
-            "description": "A full-stack news platform built for cleaner reading, faster search, and smarter story discovery, with containerized deployment for a more reliable delivery workflow.",
+            "description": "Built a full-stack news platform with cleaner reading views, faster search, and smarter story discovery, then packaged it with Docker for a more reliable delivery workflow.",
             "image": "https://images.pexels.com/photos/11366392/pexels-photo-11366392.jpeg?cs=srgb&dl=pexels-fotios-photos-11366392.jpg&fm=jpg",
             "tags": [
                 "Full Stack",
@@ -48,7 +48,7 @@
         {
             "id": "proj-4",
             "title": "Covid-19 Data Dashboard",
-            "description": "A real-time analytics dashboard for tracking global Covid-19 trends through interactive charts, summarized metrics, and data-driven views designed for quick understanding.",
+            "description": "Built a real-time Covid-19 analytics dashboard that turns live data into charts, headline metrics, and quick-glance views for tracking global case trends.",
             "image": "https://images.pexels.com/photos/6366444/pexels-photo-6366444.jpeg?cs=srgb&dl=pexels-atypeek-6366444.jpg&fm=jpg",
             "tags": [
                 "Dashboard",
@@ -63,7 +63,7 @@
         {
             "id": "proj-5",
             "title": "Class Attendance Tracker (PWA)",
-            "description": "A lightweight attendance management PWA for recording class presence, working offline, and syncing local data through a simple workflow built for everyday student use.",
+            "description": "Built an offline-first attendance tracker for students with simple class-by-class workflows, local data storage, and PWA support for everyday use.",
             "image": "https://images.pexels.com/photos/7742816/pexels-photo-7742816.jpeg?cs=srgb&dl=pexels-a-darmel-7742816.jpg&fm=jpg",
             "tags": [
                 "Progressive Web App",

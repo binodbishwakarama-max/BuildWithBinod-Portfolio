@@ -183,7 +183,7 @@ export function Projects() {
               Projects
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
-              A curated selection of my recent projects, showcasing scalable architecture and refined user experiences.
+              A selection of products I designed and shipped, spanning AI workflows, PWAs, dashboards, and full-stack web apps.
             </p>
           </div>
 
