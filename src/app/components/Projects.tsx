@@ -44,6 +44,23 @@ export function Projects() {
     setEditingId(null);
   };
 
+  const getArtworkBackdrop = (i: number) => {
+    switch (i % 5) {
+      case 0:
+        return 'from-cyan-400/20 via-blue-500/10 to-background';
+      case 1:
+        return 'from-emerald-400/20 via-teal-500/10 to-background';
+      case 2:
+        return 'from-fuchsia-400/20 via-violet-500/10 to-background';
+      case 3:
+        return 'from-rose-400/20 via-indigo-500/10 to-background';
+      case 4:
+        return 'from-sky-400/20 via-emerald-500/10 to-background';
+      default:
+        return 'from-accent/20 via-accent/10 to-background';
+    }
+  };
+
   return (
     <section id="projects" className="py-32 bg-background transition-colors duration-300">
       <div className="max-w-[1440px] w-full mx-auto px-8" ref={revealRef}>
@@ -62,7 +79,7 @@ export function Projects() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-[450px]">
+            <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-[380px] sm:auto-rows-[420px] lg:auto-rows-[450px]">
               {projects.map((project, index) => {
                 const getLayout = (i: number) => {
                   switch (i % 5) {
@@ -77,7 +94,7 @@ export function Projects() {
 
                 return (
                   <TiltCard key={project.id} className={getLayout(index)}>
-                    <div className="group relative w-full h-full rounded-[2rem] overflow-hidden border border-border/50 transition-all duration-500 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(37,99,235,0.15)] bg-card/20 backdrop-blur-sm">
+                    <div className="group relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 dark:border-white/5 transition-all duration-500 hover:border-white/20 dark:hover:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] bg-card/10 backdrop-blur-3xl">
                       {isAdmin && (
                         <div className="absolute top-4 right-4 z-50 flex gap-2">
                           <button onClick={() => startEdit(project)} className="p-2 bg-accent text-accent-foreground rounded-md shadow"><Edit size={16} /></button>
@@ -102,13 +119,13 @@ export function Projects() {
                         </div>
                       ) : (
                         <>
-                          <div className="absolute inset-0 z-0 bg-white/20 dark:bg-transparent">
+                          <div className={`absolute inset-0 z-0 bg-gradient-to-br ${getArtworkBackdrop(index)} dark:from-background dark:via-background/30 dark:to-background`}>
                             <ImageWithFallback
                               src={project.image}
                               alt={project.title}
-                              className="w-full h-full object-cover opacity-90 dark:opacity-40 transition-transform duration-700 group-hover:scale-105 group-hover:opacity-100 dark:group-hover:opacity-60"
+                              className="w-full h-full object-contain object-center p-6 sm:p-4 md:p-0 md:object-cover opacity-95 md:opacity-90 dark:opacity-70 md:dark:opacity-40 transition-transform duration-700 md:group-hover:scale-105 md:group-hover:opacity-100 md:dark:group-hover:opacity-60"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 dark:from-background dark:via-background/80 to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/60 to-background/10 md:from-background/90 md:via-background/40 dark:from-background dark:via-background/80 md:to-transparent"></div>
                           </div>
 
                           <div className="relative z-10 w-full h-full p-8 flex flex-col justify-end">
