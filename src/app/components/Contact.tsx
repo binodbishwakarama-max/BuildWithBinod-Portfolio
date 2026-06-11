@@ -1,58 +1,106 @@
 import { useState } from 'react';
-import { Github, Linkedin, Mail, MapPin, Send } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Send, AlertCircle, CheckCircle } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { submitContactForm, ContactFormData } from '../utils/api';
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
 
 export function Contact() {
   const revealRef = useScrollReveal();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     subject: '',
     message: '',
   });
 
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!EMAIL_REGEX.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Subject is required';
+    } else if (formData.subject.trim().length < 3) {
+      newErrors.subject = 'Subject must be at least 3 characters';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: 'cd7b19bf-e673-4609-bc41-b7855f258009',
-          ...formData,
-        }),
-      });
-
-      const result = await response.json();
+      const result = await submitContactForm(formData);
       if (result.success) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        setErrors({});
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
         setSubmitStatus('error');
+        setErrorMessage(result.error || 'Failed to send message. Please try again.');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
+      setErrorMessage('An unexpected error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear error for this field when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined,
+      }));
+    }
   };
 
   return (
@@ -142,7 +190,14 @@ export function Contact() {
 
             {/* Contact Form */}
             <div className="rounded-[1.5rem] border border-white/10 dark:border-white/5 bg-background/40 backdrop-blur-2xl p-6 sm:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                {submitStatus === 'error' && (
+                  <div className="p-4 rounded-lg border border-destructive/50 bg-destructive/10 flex gap-3">
+                    <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-destructive">{errorMessage}</p>
+                  </div>
+                )}
+
                 <div>
                   <label
                     htmlFor="name"
@@ -156,10 +211,20 @@ export function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all border-border bg-input text-foreground"
+                    disabled={isSubmitting}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-input text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
+                      errors.name
+                        ? 'border-destructive/50 focus:ring-destructive/50'
+                        : 'border-border focus:ring-accent/50'
+                    }`}
                     placeholder="Your name"
                   />
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-destructive flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -175,10 +240,20 @@ export function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all border-border bg-input text-foreground"
+                    disabled={isSubmitting}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-input text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
+                      errors.email
+                        ? 'border-destructive/50 focus:ring-destructive/50'
+                        : 'border-border focus:ring-accent/50'
+                    }`}
                     placeholder="your.email@example.com"
                   />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-destructive flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -194,10 +269,20 @@ export function Contact() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all border-border bg-input text-foreground"
+                    disabled={isSubmitting}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-input text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
+                      errors.subject
+                        ? 'border-destructive/50 focus:ring-destructive/50'
+                        : 'border-border focus:ring-accent/50'
+                    }`}
                     placeholder="How can I help you?"
                   />
+                  {errors.subject && (
+                    <p className="mt-1 text-sm text-destructive flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.subject}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -212,24 +297,35 @@ export function Contact() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    required
+                    disabled={isSubmitting}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all resize-none bg-input text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
+                      errors.message
+                        ? 'border-destructive/50 focus:ring-destructive/50'
+                        : 'border-border focus:ring-accent/50'
+                    }`}
                     rows={5}
-                    className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all resize-none border-border bg-input text-foreground"
                     placeholder="Tell me about your project..."
                   />
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-destructive flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting || submitStatus === 'success'}
-                  className={`w-full px-6 py-4 rounded-xl font-medium transition-all flex items-center justify-center gap-2 ${isSubmitting
+                  className={`w-full px-6 py-4 rounded-xl font-medium transition-all flex items-center justify-center gap-2 ${
+                    isSubmitting
                       ? 'bg-accent/50 cursor-not-allowed text-accent-foreground'
                       : submitStatus === 'success'
                         ? 'bg-green-500 text-white cursor-default'
                         : submitStatus === 'error'
                           ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
                           : 'bg-accent text-accent-foreground hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/20 hover:scale-105'
-                    }`}
+                  }`}
                 >
                   {isSubmitting ? (
                     <>
@@ -237,9 +333,15 @@ export function Contact() {
                       Sending...
                     </>
                   ) : submitStatus === 'success' ? (
-                    <>Message Sent Successfully!</>
+                    <>
+                      <CheckCircle className="w-5 h-5" />
+                      Message Sent Successfully!
+                    </>
                   ) : submitStatus === 'error' ? (
-                    <>Failed to send. Try again?</>
+                    <>
+                      <AlertCircle className="w-5 h-5" />
+                      Failed to send. Try again?
+                    </>
                   ) : (
                     <>
                       <Send className="w-5 h-5" />

@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { PortfolioProvider } from './context/PortfolioContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { LiquidBackground } from './components/LiquidBackground';
@@ -15,26 +16,28 @@ const Contact = lazy(() => import('./components/Contact').then(module => ({ defa
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <PortfolioProvider>
-        <div className="min-h-screen bg-background text-foreground transition-colors duration-300 relative">
-          <LiquidBackground />
-          <Navigation />
-          <main>
-            <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading section...</div>}>
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Experience />
-              <Blog />
-              <Contact />
-            </Suspense>
-          </main>
-          <Footer />
-        </div>
-      </PortfolioProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <PortfolioProvider>
+          <div className="min-h-screen bg-background text-foreground transition-colors duration-300 relative">
+            <LiquidBackground />
+            <Navigation />
+            <main>
+              <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading section...</div>}>
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Experience />
+                <Blog />
+                <Contact />
+              </Suspense>
+            </main>
+            <Footer />
+          </div>
+        </PortfolioProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 
