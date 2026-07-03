@@ -1,15 +1,15 @@
-import { Globe, Layout, Server, Smartphone, Database, Code2, Plus, X, Trash2 } from 'lucide-react';
+import { Brain, Layout, Server, Cloud, GraduationCap, Code2, Plus, X, Trash2 } from 'lucide-react';
 import { usePortfolio, SkillCategory } from '../context/PortfolioContext';
 import { TiltCard } from './ui/TiltCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const iconMap: Record<string, any> = {
+  Brain,
   Layout,
   Server,
-  Database,
-  Smartphone,
-  Code2,
-  Globe
+  Cloud,
+  GraduationCap,
+  Code2
 };
 
 export function Skills() {

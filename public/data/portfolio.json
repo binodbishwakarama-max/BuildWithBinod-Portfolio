@@ -94,49 +94,89 @@
     ],
     "skills": [
         {
-            "id": "cat-1",
-            "category": "Programming Languages",
-            "iconName": "Code2",
+            "id": "cat-ai",
+            "category": "AI Engineering",
+            "iconName": "Brain",
             "skills": [
                 "Python",
-                "Java",
-                "C",
-                "JavaScript (ES6)"
+                "Large Language Models (LLMs)",
+                "AI Agents",
+                "RAG",
+                "Prompt Engineering",
+                "Vector Embeddings",
+                "Semantic Search",
+                "LangChain",
+                "Scikit-learn",
+                "OpenAI API",
+                "Google Gemini",
+                "Groq API"
             ]
         },
         {
-            "id": "cat-2",
-            "category": "Web Development",
-            "iconName": "Globe",
-            "skills": [
-                "HTML5",
-                "CSS3",
-                "Responsive Web Design",
-                "Progressive Web Apps (PWAs)",
-                "Front-End Development"
-            ]
-        },
-        {
-            "id": "cat-3",
-            "category": "Computer Science Core",
-            "iconName": "Server",
-            "skills": [
-                "Data Structures",
-                "Algorithms",
-                "Object-Oriented Programming (OOP)",
-                "Software Development"
-            ]
-        },
-        {
-            "id": "cat-4",
-            "category": "Tools & Workflow",
+            "id": "cat-frontend",
+            "category": "Frontend",
             "iconName": "Layout",
             "skills": [
-                "SQL",
-                "AutoCAD",
+                "React",
+                "Next.js",
+                "TypeScript",
+                "JavaScript",
+                "Tailwind CSS",
+                "Framer Motion",
+                "HTML5",
+                "CSS3",
+                "Responsive Design",
+                "PWA"
+            ]
+        },
+        {
+            "id": "cat-backend",
+            "category": "Backend",
+            "iconName": "Server",
+            "skills": [
+                "Node.js",
+                "Express.js",
+                "FastAPI",
+                "REST APIs",
+                "MongoDB",
+                "PostgreSQL",
+                "Supabase",
+                "Prisma",
+                "Redis",
+                "Authentication"
+            ]
+        },
+        {
+            "id": "cat-devops",
+            "category": "Cloud & DevOps",
+            "iconName": "Cloud",
+            "skills": [
                 "Git",
                 "GitHub",
-                "Claude"
+                "Docker",
+                "Vercel",
+                "Render",
+                "Railway",
+                "Linux",
+                "Postman",
+                "VS Code",
+                "Cursor",
+                "Claude Code"
+            ]
+        },
+        {
+            "id": "cat-learning",
+            "category": "Currently Learning",
+            "iconName": "GraduationCap",
+            "skills": [
+                "DSA",
+                "Agentic AI",
+                "MCP (Model Context Protocol)",
+                "Multi-Agent Systems",
+                "Kubernetes",
+                "AWS",
+                "CI/CD",
+                "System Design"
             ]
         }
     ]
