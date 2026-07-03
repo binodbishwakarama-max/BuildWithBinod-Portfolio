@@ -4,9 +4,9 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 const experiences = [
   {
     type: 'work',
-    title: 'AI Engineer & Full-Stack Developer',
+    title: 'Founder of BWB & AI Engineer',
     company: 'Independent Contractor / Freelance',
-    period: 'Jun 2024 - Present',
+    period: '2025 - Present',
     description:
       'Architecting and deploying production-ready full-stack applications with a focus on AI integrations, LLM orchestration, and high-performance user interfaces.',
     achievements: [
