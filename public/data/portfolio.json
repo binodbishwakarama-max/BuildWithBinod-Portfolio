@@ -1,6 +1,22 @@
 {
     "projects": [
         {
+            "id": "proj-replysync",
+            "title": "ReplySync",
+            "description": "Built a multi-tenant WhatsApp CRM and automation platform featuring encrypted tenant secrets, Meta signature verification, webhook idempotency, and template-based follow-up campaigns.",
+            "image": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            "tags": [
+                "Next.js",
+                "Supabase",
+                "WhatsApp API",
+                "SaaS",
+                "CRM",
+                "Database Encryption"
+            ],
+            "githubUrl": "https://github.com/binodbishwakarama-max/aiautomation",
+            "liveUrl": "https://aiautomation-two.vercel.app/"
+        },
+        {
             "id": "proj-1",
             "title": "MindFlow AI Study Assistant",
             "description": "Built an AI study workflow that lets students upload PDFs, generate flashcards and quizzes, and stay engaged through a gamified revision experience.",
@@ -102,7 +118,7 @@
         },
         {
             "id": "cat-3",
-            "category": "Computer Science Core(Learning)",
+            "category": "Computer Science Core",
             "iconName": "Server",
             "skills": [
                 "Data Structures",

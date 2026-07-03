@@ -104,7 +104,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 bg-card transition-colors duration-300">
+    <section id="contact" className="py-20 sm:py-24 bg-card transition-colors duration-300 scroll-mt-28">
       <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 tracking-tight text-foreground">
@@ -166,21 +166,21 @@ export function Contact() {
                     href="https://github.com/binodbishwakarama-max"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 flex items-center justify-center rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
+                    className="w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 bg-accent/10 text-accent hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
                   >
                     <Github className="w-6 h-6" />
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/binod-bishwakarma-417612380/"
+                    href="https://linkedin.com/in/binodbishwakarama"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 flex items-center justify-center rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
+                    className="w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 bg-accent/10 text-accent hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
                   >
                     <Linkedin className="w-6 h-6" />
                   </a>
                   <a
                     href="mailto:binodbishwakarama@gmail.com"
-                    className="w-12 h-12 flex items-center justify-center rounded-lg transition-all hover:scale-110 bg-accent/10 text-accent hover:bg-accent/20"
+                    className="w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 bg-accent/10 text-accent hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
                   >
                     <Mail className="w-6 h-6" />
                   </a>
@@ -212,15 +212,15 @@ export function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-input text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
+                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition-all duration-300 bg-input/40 backdrop-blur-md text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
                       errors.name
-                        ? 'border-destructive/50 focus:ring-destructive/50'
-                        : 'border-border focus:ring-accent/50'
+                        ? 'border-destructive/40 focus:ring-destructive/30'
+                        : 'border-border/60 focus:ring-accent/30 focus:border-accent/40'
                     }`}
                     placeholder="Your name"
                   />
                   {errors.name && (
-                    <p className="mt-1 text-sm text-destructive flex items-center gap-1">
+                    <p className="mt-1.5 text-sm text-destructive flex items-center gap-1.5">
                       <AlertCircle className="w-4 h-4" />
                       {errors.name}
                     </p>
@@ -241,15 +241,15 @@ export function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-input text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
+                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition-all duration-300 bg-input/40 backdrop-blur-md text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
                       errors.email
-                        ? 'border-destructive/50 focus:ring-destructive/50'
-                        : 'border-border focus:ring-accent/50'
+                        ? 'border-destructive/40 focus:ring-destructive/30'
+                        : 'border-border/60 focus:ring-accent/30 focus:border-accent/40'
                     }`}
                     placeholder="your.email@example.com"
                   />
                   {errors.email && (
-                    <p className="mt-1 text-sm text-destructive flex items-center gap-1">
+                    <p className="mt-1.5 text-sm text-destructive flex items-center gap-1.5">
                       <AlertCircle className="w-4 h-4" />
                       {errors.email}
                     </p>
@@ -270,15 +270,15 @@ export function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all bg-input text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
+                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition-all duration-300 bg-input/40 backdrop-blur-md text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
                       errors.subject
-                        ? 'border-destructive/50 focus:ring-destructive/50'
-                        : 'border-border focus:ring-accent/50'
+                        ? 'border-destructive/40 focus:ring-destructive/30'
+                        : 'border-border/60 focus:ring-accent/30 focus:border-accent/40'
                     }`}
                     placeholder="How can I help you?"
                   />
                   {errors.subject && (
-                    <p className="mt-1 text-sm text-destructive flex items-center gap-1">
+                    <p className="mt-1.5 text-sm text-destructive flex items-center gap-1.5">
                       <AlertCircle className="w-4 h-4" />
                       {errors.subject}
                     </p>
@@ -298,16 +298,16 @@ export function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all resize-none bg-input text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
+                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition-all duration-300 resize-none bg-input/40 backdrop-blur-md text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
                       errors.message
-                        ? 'border-destructive/50 focus:ring-destructive/50'
-                        : 'border-border focus:ring-accent/50'
+                        ? 'border-destructive/40 focus:ring-destructive/30'
+                        : 'border-border/60 focus:ring-accent/30 focus:border-accent/40'
                     }`}
                     rows={5}
                     placeholder="Tell me about your project..."
                   />
                   {errors.message && (
-                    <p className="mt-1 text-sm text-destructive flex items-center gap-1">
+                    <p className="mt-1.5 text-sm text-destructive flex items-center gap-1.5">
                       <AlertCircle className="w-4 h-4" />
                       {errors.message}
                     </p>
@@ -317,14 +317,14 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting || submitStatus === 'success'}
-                  className={`w-full px-6 py-4 rounded-xl font-medium transition-all flex items-center justify-center gap-2 ${
+                  className={`w-full px-6 py-4 rounded-xl font-medium transition-all duration-300 ease-out flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent cursor-pointer ${
                     isSubmitting
                       ? 'bg-accent/50 cursor-not-allowed text-accent-foreground'
                       : submitStatus === 'success'
-                        ? 'bg-green-500 text-white cursor-default'
+                        ? 'bg-green-500 text-white cursor-default animate-pulse'
                         : submitStatus === 'error'
                           ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
-                          : 'bg-accent text-accent-foreground hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/20 hover:scale-105'
+                          : 'bg-accent text-accent-foreground hover:bg-accent-hover shadow-md hover:shadow-lg hover:shadow-accent/15 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]'
                   }`}
                 >
                   {isSubmitting ? (

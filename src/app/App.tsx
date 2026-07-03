@@ -11,7 +11,6 @@ const About = lazy(() => import('./components/About').then(module => ({ default:
 const Skills = lazy(() => import('./components/Skills').then(module => ({ default: module.Skills })));
 const Projects = lazy(() => import('./components/Projects').then(module => ({ default: module.Projects })));
 const Experience = lazy(() => import('./components/Experience').then(module => ({ default: module.Experience })));
-const Blog = lazy(() => import('./components/Blog').then(module => ({ default: module.Blog })));
 const Contact = lazy(() => import('./components/Contact').then(module => ({ default: module.Contact })));
 
 export default function App() {
@@ -29,7 +28,6 @@ export default function App() {
                 <Skills />
                 <Projects />
                 <Experience />
-                <Blog />
                 <Contact />
               </Suspense>
             </main>

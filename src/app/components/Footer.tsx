@@ -26,7 +26,7 @@ export function Footer() {
       <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-center md:text-left">
           <p className="text-sm text-card-foreground">
-            (c) {currentYear} Binod Bishwakarma. All rights reserved.
+            (c) {currentYear} Binod Bishwakarama. All rights reserved.
           </p>
           <div className="text-sm text-card-foreground flex justify-end">
             <button

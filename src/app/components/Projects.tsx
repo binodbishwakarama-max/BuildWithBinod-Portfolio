@@ -175,7 +175,7 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 sm:py-24 lg:py-32 bg-background transition-colors duration-300">
+    <section id="projects" className="py-20 sm:py-24 lg:py-32 bg-background transition-colors duration-300 scroll-mt-28">
       <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 sm:mb-16">
@@ -210,7 +210,7 @@ export function Projects() {
 
                 return (
                   <TiltCard key={project.id} className={getLayout(index)}>
-                    <div className="group relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 dark:border-white/5 transition-all duration-500 hover:border-white/20 dark:hover:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] bg-card/10 backdrop-blur-3xl">
+                    <div className="group relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 dark:border-white/5 transition-all duration-500 ease-out hover:border-white/20 dark:hover:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_32px_rgba(0,0,0,0.02)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_16px_48px_rgba(0,0,0,0.12)] bg-card/10 backdrop-blur-3xl">
                       {isAdmin && (
                         <div className="absolute top-4 right-4 z-50 flex gap-2">
                           <button onClick={() => startEdit(project)} className="p-2 bg-accent text-accent-foreground rounded-md shadow"><Edit size={16} /></button>
@@ -239,7 +239,7 @@ export function Projects() {
                             <ImageWithFallback
                               src={cardArtwork}
                               alt={project.title}
-                              className={`w-full h-full object-cover object-center transition-transform duration-700 md:group-hover:scale-[1.04] md:group-hover:opacity-100 ${
+                              className={`w-full h-full object-cover object-center transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) md:group-hover:scale-[1.04] md:group-hover:opacity-100 ${
                                 usesGeneratedArtwork
                                   ? 'opacity-95 dark:opacity-55 md:dark:opacity-42'
                                   : 'opacity-90 dark:opacity-60 md:dark:opacity-40'
@@ -250,8 +250,8 @@ export function Projects() {
                           </div>
 
                           <div className="relative z-10 w-full h-full p-6 sm:p-8 flex flex-col justify-end">
-                            <div className="transform transition-transform duration-300 md:translate-y-4 md:group-hover:-translate-y-4">
-                              <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tighter text-foreground drop-shadow-md">
+                            <div className="transform transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1) md:translate-y-4 md:group-hover:-translate-y-2">
+                              <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tighter text-foreground drop-shadow-sm">
                                 {project.title}
                               </h3>
                               <p className="mb-5 sm:mb-6 leading-relaxed text-sm sm:text-base text-muted-foreground line-clamp-3 md:line-clamp-3 md:group-hover:line-clamp-none transition-all duration-300">
@@ -259,19 +259,19 @@ export function Projects() {
                               </p>
                               <div className="flex flex-wrap gap-2 mb-5 sm:mb-6">
                                 {project.tags.map((tag) => (
-                                  <span key={tag} className="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-foreground/90 backdrop-blur-md">
+                                  <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-background/40 dark:bg-white/5 border border-white/10 dark:border-white/5 text-foreground/90 backdrop-blur-md">
                                     {tag}
                                   </span>
                                 ))}
                               </div>
                               <div className="flex flex-wrap gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                                 {project.githubUrl && project.githubUrl !== '#' && (
-                                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full transition-all border border-border/50 text-foreground hover:bg-white/10 backdrop-blur-md font-medium text-sm">
+                                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] border border-white/15 hover:border-white/30 dark:border-white/10 dark:hover:border-white/20 text-foreground hover:bg-white/10 backdrop-blur-md font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-foreground">
                                     <Github className="w-4 h-4" /> Code
                                   </a>
                                 )}
                                 {project.liveUrl && project.liveUrl !== '#' && (
-                                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full transition-all bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5 font-medium text-sm">
+                                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] bg-foreground text-background hover:bg-foreground/95 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-foreground font-medium text-sm">
                                     <ExternalLink className="w-4 h-4" /> Live Demo
                                   </a>
                                 )}

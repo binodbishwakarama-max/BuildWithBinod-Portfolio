@@ -23,47 +23,53 @@ export function Hero() {
             Web Engineering + AI Product Building
           </div>
 
-          <h1 className="sr-only">BuildWithBinod - Software Developer Portfolio</h1>
+          <h1 className="sr-only">Binod Bishwakarama - Software Developer Portfolio</h1>
 
           <div className="text-[2.85rem] sm:text-6xl md:text-8xl lg:text-[7rem] font-bold tracking-tighter mb-6 sm:mb-8 text-foreground leading-[1.02] sm:leading-[1.05] drop-shadow-sm" aria-hidden="true">
-            BuildWithBinod{" "}
+            Binod Bishwakarama{" "}
             <span className="px-2 sm:px-3 text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
               Portfolio
             </span>
           </div>
 
-          <div className="max-w-3xl mb-8 sm:mb-10">
-            <p className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 text-foreground/80 font-medium">
-              Full-Stack Developer and AI Product Builder
+          <div className="max-w-3xl mb-8 sm:mb-10 space-y-6">
+            <p className="text-lg sm:text-xl md:text-2xl text-foreground/90 font-semibold tracking-tight">
+              AI Systems Engineer & Full-Stack Developer
             </p>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-              I am Binod Bishwakarma, a Computer Science student at Dayananda Sagar University building real products where web engineering meets artificial intelligence. My work includes AI study tools, healthcare PWAs, data dashboards, and product-focused web apps designed to solve practical problems.
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+              <button
+                onClick={() => scrollToSection("projects")}
+                className="w-full sm:w-auto px-6 py-3 rounded-full font-medium bg-accent text-accent-foreground hover:bg-accent-hover transition-colors duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-background cursor-pointer"
+              >
+                View Projects
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 py-3 rounded-full font-medium border border-border text-foreground hover:bg-foreground/5 transition-colors duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 dark:focus-visible:ring-offset-background cursor-pointer"
+              >
+                Download Resume
+              </a>
+            </div>
+
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-normal">
+              I build production-grade AI systems, combining full-stack engineering with vector retrieval, semantic search, and structured agent workflows. Currently pursuing Computer Science at Dayananda Sagar University, my focus is bridging the gap between research models and deployed software.
+            </p>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-normal">
+              From architecting MindFlow (an AI study platform utilizing pgvector RAG) to offline-first PWAs, I build systems optimized for latency, reliability, and measurable product impact.
             </p>
           </div>
 
-          <div className="max-w-3xl w-full mb-10 sm:mb-12 rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 dark:border-white/5 bg-card/10 backdrop-blur-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] px-5 sm:px-6 py-4 sm:py-5 text-left">
-            <p className="text-xs font-semibold tracking-[0.24em] uppercase text-accent mb-2">
-              Brand Statement
+          <div className="max-w-3xl w-full mb-10 sm:mb-12 rounded-[2rem] border border-white/10 dark:border-white/5 bg-card/10 backdrop-blur-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_32px_rgba(0,0,0,0.02)] px-6 sm:px-8 py-5 sm:py-6 text-left hover:border-white/15 dark:hover:border-white/8 transition-colors duration-300">
+            <p className="text-xs font-semibold tracking-[0.24em] uppercase text-accent mb-2.5">
+              HOW I BUILD
             </p>
-            <p className="text-base sm:text-lg md:text-xl text-foreground leading-relaxed">
-              I turn ideas into intelligent web products by combining full-stack engineering with AI-driven features and a product builder's approach to problem solving.
+            <p className="text-base sm:text-lg md:text-xl text-foreground leading-relaxed font-medium">
+              First principles over patterns. Leverage over effort.
             </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-2 sm:mt-4 w-full sm:w-auto">
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium transition-all hover:scale-105 flex items-center justify-center gap-2 bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5"
-            >
-              View My Work
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium transition-all hover:bg-card border border-border text-foreground hover:border-foreground/30"
-            >
-              Contact Me
-            </button>
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="py-20 sm:py-24 lg:py-32 bg-background transition-colors duration-300">
+    <section id="skills" className="py-20 sm:py-24 lg:py-32 bg-background transition-colors duration-300 scroll-mt-28">
       <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 sm:mb-16">
@@ -73,7 +73,7 @@ export function Skills() {
 
                 return (
                   <TiltCard key={category.id} className={`${getColSpan(index)} h-full`}>
-                    <div className="group bg-card/10 backdrop-blur-3xl rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 lg:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-500 border border-white/10 dark:border-white/5 hover:border-white/20 dark:hover:border-white/10 relative h-full flex flex-col justify-between overflow-hidden">
+                    <div className="group bg-card/10 backdrop-blur-3xl rounded-[2rem] p-6 sm:p-8 lg:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_32px_rgba(0,0,0,0.02)] transition-all duration-500 ease-out border border-white/10 dark:border-white/5 hover:border-white/20 dark:hover:border-white/10 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_12px_48px_rgba(0,0,0,0.04)] relative h-full flex flex-col justify-between overflow-hidden">
                       {/* Subtle ambient background glow */}
                       <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-500"></div>
 
@@ -87,8 +87,8 @@ export function Skills() {
                       )}
 
                       <div className="relative z-10">
-                        <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                          <div className="p-2.5 sm:p-3 rounded-2xl bg-accent/10 border border-accent/20 group-hover:scale-110 transition-transform duration-500">
+                        <div className="flex items-center gap-3.5 sm:gap-4 mb-6 sm:mb-8">
+                          <div className="p-2.5 sm:p-3 rounded-2xl bg-accent/10 border border-accent/20 group-hover:scale-110 group-hover:bg-accent/15 group-hover:border-accent/30 transition-all duration-500 ease-out">
                             <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-accent" />
                           </div>
                           <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
@@ -100,7 +100,7 @@ export function Skills() {
                           {category.skills.map((skill) => (
                             <span
                               key={skill}
-                              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium bg-background/50 hover:bg-background border border-border/50 text-foreground/80 transition-colors group/skill cursor-default"
+                              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium bg-background/50 hover:bg-accent/5 hover:text-accent hover:border-accent/30 border border-border/50 text-foreground/80 transition-all duration-300 ease-out hover:scale-[1.02] group/skill cursor-default"
                             >
                               {skill}
                               {isAdmin && (

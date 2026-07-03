@@ -81,7 +81,7 @@ export function Navigation() {
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-[radial-gradient(circle_at_30%_28%,rgba(255,255,255,0.82),rgba(255,255,255,0.16)_34%,rgba(255,255,255,0.05)_74%)] text-[11px] font-semibold tracking-[0.18em] text-foreground/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_8px_20px_rgba(15,23,42,0.05)] backdrop-blur-xl dark:border-white/12 dark:bg-[radial-gradient(circle_at_30%_28%,rgba(255,255,255,0.12),rgba(255,255,255,0.06)_36%,rgba(255,255,255,0.02)_74%)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_10px_22px_rgba(0,0,0,0.14)]">
               BB
             </span>
-            <span>BuildWithBinod</span>
+            <span>Binod Bishwakarama</span>
           </button>
 
           {/* Mobile Menu Toggle */}
