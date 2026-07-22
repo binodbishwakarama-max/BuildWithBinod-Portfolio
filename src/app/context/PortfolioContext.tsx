@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-const PORTFOLIO_DATA_VERSION = '2026-07-21-mindflow-link-update';
+const PORTFOLIO_DATA_VERSION = '2026-07-22-smartnews-link-update';
 
 // Define the Data Types
 export interface Project {
