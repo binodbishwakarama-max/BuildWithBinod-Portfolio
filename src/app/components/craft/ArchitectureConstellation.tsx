@@ -82,12 +82,30 @@ export function ArchitectureConstellation() {
       mouse.active = false;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const rect = canvas.getBoundingClientRect();
+        mouse.targetX = e.touches[0].clientX - rect.left;
+        mouse.targetY = e.touches[0].clientY - rect.top;
+        mouse.active = true;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      mouse.targetX = -2000;
+      mouse.targetY = -2000;
+      mouse.active = false;
+    };
+
     window.addEventListener('resize', () => {
       setupCanvasSize();
     });
 
     container.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('mouseleave', handleMouseLeave);
+    container.addEventListener('touchstart', handleTouchMove, { passive: true });
+    container.addEventListener('touchmove', handleTouchMove, { passive: true });
+    container.addEventListener('touchend', handleTouchEnd);
 
     const maxDist = 130;
     const mouseInfluenceRadius = 160;
@@ -193,6 +211,9 @@ export function ArchitectureConstellation() {
     return () => {
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
+      container.removeEventListener('touchstart', handleTouchMove);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
       cancelAnimationFrame(animationId);
     };
   }, [isDark]);
@@ -200,7 +221,7 @@ export function ArchitectureConstellation() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[380px] sm:h-[440px] lg:h-[490px] rounded-2xl border border-foreground/[0.08] bg-foreground/[0.015] dark:bg-card/40 overflow-hidden backdrop-blur-xl group"
+      className="relative w-full h-[280px] sm:h-[380px] lg:h-[490px] rounded-2xl border border-foreground/[0.08] bg-foreground/[0.015] dark:bg-card/40 overflow-hidden backdrop-blur-xl group touch-none"
     >
       {/* High-Resolution Retina Canvas */}
       <canvas ref={canvasRef} className="w-full h-full cursor-crosshair block" />

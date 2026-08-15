@@ -160,7 +160,7 @@ export function Navigation() {
 
       {/* Mobile Ultra-Transparent Liquid Glass Drawer */}
       {isMobileOpen && (
-        <div className="pointer-events-auto fixed inset-x-4 top-20 rounded-3xl border border-white/25 dark:border-white/15 bg-background/50 dark:bg-card/40 backdrop-blur-3xl [backdrop-filter:blur(40px)_saturate(200%)] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.35)] flex flex-col gap-1 md:hidden animate-in slide-in-from-top-4 duration-300">
+        <div className="pointer-events-auto fixed inset-x-4 top-20 rounded-3xl border border-foreground/[0.1] dark:border-white/15 bg-background/90 dark:bg-card/85 backdrop-blur-3xl [backdrop-filter:blur(40px)_saturate(200%)] p-4 shadow-[0_24px_60px_rgba(0,0,0,0.35)] flex flex-col gap-1 md:hidden animate-in slide-in-from-top-4 duration-300">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
@@ -168,15 +168,32 @@ export function Navigation() {
                 scrollToSection(item.id);
                 setIsMobileOpen(false);
               }}
-              className={`p-3 text-left font-semibold text-sm rounded-2xl transition-all cursor-pointer ${
+              className={`p-3 text-left font-semibold text-sm rounded-2xl transition-all cursor-pointer flex items-center justify-between ${
                 activeSection === item.id
-                  ? 'text-foreground bg-white/25 dark:bg-white/15 shadow-sm font-bold'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-white/10'
+                  ? 'text-foreground bg-foreground/[0.08] dark:bg-white/15 shadow-sm font-bold'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]'
               }`}
             >
-              {item.label}
+              <span>{item.label}</span>
+              {activeSection === item.id && (
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              )}
             </button>
           ))}
+
+          {/* Drawer CTA */}
+          <div className="pt-2 mt-2 border-t border-foreground/[0.08]">
+            <button
+              onClick={() => {
+                scrollToSection('contact');
+                setIsMobileOpen(false);
+              }}
+              className="w-full py-3 rounded-2xl bg-foreground text-background font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-98"
+            >
+              <span>Let's Talk</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       )}
     </header>

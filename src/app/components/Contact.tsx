@@ -123,7 +123,7 @@ export function Contact() {
   };
 
   const inputClass = (hasError: boolean) =>
-    `w-full px-4 py-3.5 rounded-xl border bg-foreground/[0.02] text-foreground text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500/50 transition-all ${
+    `w-full px-4 py-3.5 rounded-xl border bg-foreground/[0.02] text-foreground text-base sm:text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500/50 transition-all ${
       hasError ? 'border-destructive/50' : 'border-foreground/[0.08]'
     }`;
 
