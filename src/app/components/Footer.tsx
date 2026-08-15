@@ -1,40 +1,48 @@
-import { usePortfolio } from '../context/PortfolioContext';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const { isAdmin, setIsAdmin } = usePortfolio();
-
-  const handleAdminClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (isAdmin) {
-      if (window.confirm('Are you sure you want to log out of Admin Mode?')) {
-        setIsAdmin(false);
-      }
-    } else {
-      const password = window.prompt('Enter Admin Password:');
-      if (password === 'Binod0958') {
-        setIsAdmin(true);
-        alert('Admin Mode Enabled! You can now edit the portfolio.');
-      } else if (password !== null) {
-        alert('Incorrect password.');
-      }
-    }
-  };
 
   return (
-    <footer className="py-8 bg-card border-t border-border transition-colors duration-300">
-      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-center md:text-left">
-          <p className="text-sm text-card-foreground">
-            (c) {currentYear} Binod Bishwakarama. All rights reserved.
-          </p>
-          <div className="text-sm text-card-foreground flex justify-end">
-            <button
-              onClick={handleAdminClick}
-              className="opacity-20 hover:opacity-100 transition-opacity text-xs"
+    <footer className="py-10 sm:py-12 bg-background border-t border-foreground/[0.06] transition-colors duration-300">
+      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Left: Brand & copyright */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-sm text-muted-foreground">
+            <span className="font-display font-bold text-foreground text-base">
+              Binod Bishwakarma
+            </span>
+            <span className="hidden sm:inline text-foreground/20">·</span>
+            <span>© {currentYear} All rights reserved.</span>
+          </div>
+
+          {/* Right: Social links */}
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/binodbishwakarama-max"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-all"
+              aria-label="GitHub"
             >
-              {isAdmin ? '(Admin Active - Logout)' : 'pi'}
-            </button>
+              <Github className="w-4 h-4" />
+            </a>
+            <a
+              href="https://linkedin.com/in/binodbishwakarama"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-all"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a
+              href="mailto:binodbishwakarama@gmail.com"
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-foreground/[0.05] transition-all"
+              aria-label="Email"
+            >
+              <Mail className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>

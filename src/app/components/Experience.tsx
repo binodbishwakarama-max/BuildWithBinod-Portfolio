@@ -1,100 +1,117 @@
-import { Briefcase, GraduationCap } from 'lucide-react';
+import { Briefcase, GraduationCap, CheckCircle2, Terminal } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { SpotlightCard } from './ui/SpotlightCard';
 
 const experiences = [
   {
     type: 'work',
-    title: 'Founder of BWB & AI Engineer',
-    company: 'Independent Contractor / Freelance',
-    period: '2025 - Present',
+    title: 'Founder & AI Systems Architect',
+    company: 'Independent Contractor / BuildWithBinod',
+    period: '2025 — Present',
     description:
-      'Architecting and deploying production-ready full-stack applications with a focus on AI integrations, LLM orchestration, and high-performance user interfaces.',
+      'Architecting and deploying production-ready full-stack applications with a focus on AI integrations, vector retrieval systems, and high-performance user interfaces.',
     achievements: [
-      'Developed MindFlow, an AI-powered study assistant using semantic search and retrieval-augmented generation (RAG)',
-      'Built a mobile-first AI Healthcare PWA with voice-to-text input and spoken text-to-speech output',
-      'Designed and deployed responsive data dashboards and real-time visualization tools using Docker',
+      'Built ReplySync: Multi-tenant WhatsApp CRM platform with encrypted tenant secrets and webhook idempotency',
+      'Developed MindFlow: AI study platform leveraging pgvector RAG and automated flashcard generation',
+      'Engineered AI Healthcare PWA: Mobile-first offline-capable PWA with real-time voice synthesis and text-to-speech',
     ],
+    spotlight: 'rgba(59, 130, 246, 0.15)',
   },
   {
     type: 'education',
     title: 'B.Tech in Computer Science and Engineering',
     company: 'Dayananda Sagar University',
-    period: 'Aug 2025 - Present',
+    period: 'Aug 2025 — Present',
     description:
-      'Pursuing advanced studies in Computer Science, Artificial Intelligence, and Machine Learning, translating academic research into practical web products.',
+      'Pursuing advanced studies in Computer Science, Artificial Intelligence, and Distributed Systems, translating foundational research into practical web products.',
     achievements: [
-      'Focusing on advanced algorithms, data structures, and software engineering principles',
-      'Building utility-driven Progressive Web Applications and full-stack systems',
+      'Deep focus on vector databases, semantic search algorithms, and full-stack software engineering',
+      'Designing utility-driven Progressive Web Applications and high-throughput APIs',
     ],
+    spotlight: 'rgba(99, 102, 241, 0.15)',
   },
   {
     type: 'education',
     title: '12th Grade (PCMC)',
     company: 'Narayana Junior College',
-    period: 'Mar 2024 - May 2025',
+    period: 'Mar 2024 — May 2025',
     description:
-      'Completed higher secondary education with a focus on Physics, Chemistry, Mathematics, and Computer Science.',
+      'Completed higher secondary education with a rigorous focus on Physics, Chemistry, Mathematics, and Computer Science.',
     achievements: [
       'Captain of the Narayana Cricket Club',
-      'Developed foundational knowledge in problem solving and logic',
+      'Established foundational problem-solving and algorithmic logic competencies',
     ],
+    spotlight: 'rgba(139, 92, 246, 0.15)',
   },
 ];
-
 
 export function Experience() {
   const revealRef = useScrollReveal();
 
   return (
-    <section id="experience" className="py-20 sm:py-24 bg-muted transition-colors duration-300 scroll-mt-28">
-      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 tracking-tight text-foreground">
+    <section id="experience" className="py-24 sm:py-32 bg-background transition-colors duration-500 scroll-mt-28 relative">
+      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-8 lg:px-12" ref={revealRef}>
+        
+        {/* Section Header */}
+        <div className="mb-16 sm:mb-20">
+          <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground tracking-[0.2em] uppercase mb-4">
+            <Terminal className="w-3.5 h-3.5 text-amber-500" />
+            <span>[05] // TIMELINE & ROLES</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-foreground font-display max-w-2xl">
             Experience & Education
           </h2>
-          <p className="text-center text-base sm:text-lg mb-12 sm:mb-16 text-muted-foreground">
-            My professional journey
-          </p>
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-5 sm:left-8 top-0 bottom-0 w-0.5 bg-accent/20"></div>
+        </div>
 
+        {/* Timeline */}
+        <div className="max-w-3xl mx-auto relative">
+          {/* Animated vertical line */}
+          <div className="absolute left-5 sm:left-6 top-2 bottom-2 w-px bg-gradient-to-b from-blue-500 via-indigo-500 to-foreground/[0.06]" />
+
+          <div className="space-y-8 sm:space-y-10">
             {experiences.map((exp, index) => {
               const Icon = exp.type === 'work' ? Briefcase : GraduationCap;
+
               return (
-                <div key={index} className="relative mb-8 sm:mb-12 pl-14 sm:pl-20 group">
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 top-1.5 sm:top-2 p-2.5 sm:p-3 rounded-full shadow-md bg-accent text-accent-foreground transition-transform duration-300 ease-out group-hover:scale-110">
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                <div key={index} className="stagger-child relative pl-14 sm:pl-16 group">
+                  {/* Timeline node icon */}
+                  <div className="absolute left-2 sm:left-3 top-1.5 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-background border-2 border-blue-500 dark:border-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 z-10 shadow-sm">
+                    <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-500 dark:text-cyan-400" />
                   </div>
 
-                  {/* Content card */}
-                  <div className="bg-card rounded-[1.5rem] p-5 sm:p-6 shadow-sm border border-border/80 hover:border-accent/20 hover:shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 transition-all duration-300 ease-out">
-                    <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
+                  {/* Spotlight Card */}
+                  <SpotlightCard
+                    spotlightColor={exp.spotlight}
+                    className="p-6 sm:p-7"
+                  >
+                    <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                       <div>
-                        <h3 className="text-lg sm:text-xl font-bold tracking-tight text-card-foreground">
+                        <h3 className="text-lg sm:text-xl font-bold text-foreground tracking-tight font-display">
                           {exp.title}
                         </h3>
-                        <p className="text-base sm:text-lg font-semibold mt-0.5 text-accent">
+                        <p className="text-sm font-semibold text-blue-500 dark:text-cyan-400 mt-0.5 font-mono">
                           {exp.company}
                         </p>
                       </div>
-                      <span className="w-full sm:w-auto px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-accent/8 text-card-foreground">
+
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-foreground/[0.04] text-muted-foreground whitespace-nowrap">
                         {exp.period}
                       </span>
                     </div>
-                    <p className="mb-4 text-base leading-relaxed text-foreground/80 dark:text-foreground/75">
+
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                       {exp.description}
                     </p>
+
                     <ul className="space-y-2">
                       {exp.achievements.map((achievement, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-base leading-relaxed text-muted-foreground">
-                          <span className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-accent"></span>
+                        <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/80 leading-relaxed">
+                          <CheckCircle2 className="w-4 h-4 text-blue-500 dark:text-cyan-400 flex-shrink-0 mt-0.5" />
                           <span>{achievement}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </SpotlightCard>
                 </div>
               );
             })}

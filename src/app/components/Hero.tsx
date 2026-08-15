@@ -1,75 +1,121 @@
-import { ArrowRight } from "lucide-react";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useState } from 'react';
+import { ArrowDown, ArrowUpRight, Copy, Check, Mail } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ArchitectureConstellation } from './craft/ArchitectureConstellation';
+import { sounds } from '../utils/soundEffects';
 
 export function Hero() {
   const revealRef = useScrollReveal();
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
+      sounds.playClick();
     }
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('binodbishwakarama@gmail.com');
+    setCopiedEmail(true);
+    sounds.playChime();
+    setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   return (
     <section
       id="hero"
-      className="min-h-[100svh] flex items-center justify-center pt-24 sm:pt-20 bg-background transition-colors duration-300"
+      className="min-h-[92svh] relative flex flex-col justify-center pt-28 sm:pt-32 pb-12 sm:pb-16 bg-background transition-colors duration-500 overflow-hidden"
     >
-      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28" ref={revealRef}>
-        <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 dark:border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] bg-card/10 backdrop-blur-3xl text-xs sm:text-sm font-medium text-muted-foreground mb-6 sm:mb-8 text-center">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-            Web Engineering + AI Product Building
-          </div>
+      <div
+        className="max-w-[1440px] w-full mx-auto px-6 sm:px-8 lg:px-12 relative z-10 my-auto"
+        ref={revealRef}
+      >
+        {/* Narrative Hero Body */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* Left Column: Storytelling Headline & Bio */}
+          <div className="lg:col-span-6 space-y-6 sm:space-y-8">
+            <div className="space-y-4">
+              <div className="text-xs font-mono tracking-[0.2em] text-blue-500 dark:text-blue-400 uppercase font-semibold">
+                AI/ML & FULL-STACK ENGINEERING
+              </div>
 
-          <h1 className="sr-only">Binod Bishwakarama - Software Developer Portfolio</h1>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.035em] text-foreground leading-[1.08] font-display">
+                Building & scaling intelligent web products.
+              </h1>
+            </div>
 
-          <div className="text-[2.85rem] sm:text-6xl md:text-8xl lg:text-[7rem] font-bold tracking-tighter mb-6 sm:mb-8 text-foreground leading-[1.02] sm:leading-[1.05] drop-shadow-sm" aria-hidden="true">
-            Binod Bishwakarama{" "}
-            <span className="px-2 sm:px-3 text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
-              Portfolio
-            </span>
-          </div>
-
-          <div className="max-w-3xl mb-8 sm:mb-10 space-y-6">
-            <p className="text-lg sm:text-xl md:text-2xl text-foreground/90 font-semibold tracking-tight">
-              AI Systems Engineer & Full-Stack Developer
+            <p className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed">
+              I am <strong className="text-foreground font-semibold">Binod Bishwakarma</strong> — a Full-Stack Developer and AI Engineer based in Bengaluru. I design and build production web applications, LLM-powered systems, and high-performance backends with Next.js, React, FastAPI, Python, and PostgreSQL.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
-                onClick={() => scrollToSection("projects")}
-                className="w-full sm:w-auto px-6 py-3 rounded-full font-medium bg-accent text-accent-foreground hover:bg-accent-hover transition-colors duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-background cursor-pointer"
+                onClick={() => scrollToSection('projects')}
+                className="px-7 py-3.5 rounded-full bg-foreground text-background font-semibold text-sm hover:opacity-90 transition-all flex items-center gap-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.18)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
-                View Projects
-                <ArrowRight className="w-4 h-4" />
+                <span>View Projects</span>
+                <ArrowDown className="w-4 h-4" />
               </button>
+
+              <button
+                onClick={handleCopyEmail}
+                className="px-5 py-3.5 rounded-full border border-foreground/[0.12] text-foreground font-semibold text-sm hover:border-foreground/25 hover:bg-foreground/[0.03] transition-all flex items-center gap-2 cursor-pointer"
+                title="Copy Direct Email"
+              >
+                {copiedEmail ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-500" />
+                    <span className="text-emerald-500 font-medium">Copied Email</span>
+                  </>
+                ) : (
+                  <>
+                    <Mail className="w-4 h-4 text-muted-foreground" />
+                    <span>Copy Email</span>
+                  </>
+                )}
+              </button>
+
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3 rounded-full font-medium border border-border text-foreground hover:bg-foreground/5 transition-colors duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 dark:focus-visible:ring-offset-background cursor-pointer"
+                className="px-5 py-3.5 rounded-full border border-foreground/[0.08] text-muted-foreground hover:text-foreground font-semibold text-sm hover:border-foreground/20 hover:bg-foreground/[0.02] transition-all flex items-center gap-1.5"
               >
-                Download Resume
+                <span>Resume</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground" />
               </a>
             </div>
-
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-normal">
-              I build production-grade AI systems, combining full-stack engineering with vector retrieval, semantic search, and structured agent workflows. Currently pursuing Computer Science at Dayananda Sagar University, my focus is bridging the gap between research models and deployed software.
-            </p>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-normal">
-              From architecting MindFlow (an AI study platform utilizing pgvector RAG) to offline-first PWAs, I build systems optimized for latency, reliability, and measurable product impact.
-            </p>
           </div>
 
-          <div className="max-w-3xl w-full mb-10 sm:mb-12 rounded-[2rem] border border-white/10 dark:border-white/5 bg-card/10 backdrop-blur-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_32px_rgba(0,0,0,0.02)] px-6 sm:px-8 py-5 sm:py-6 text-left hover:border-white/15 dark:hover:border-white/8 transition-colors duration-300">
-            <p className="text-xs font-semibold tracking-[0.24em] uppercase text-accent mb-2.5">
-              HOW I BUILD
-            </p>
-            <p className="text-base sm:text-lg md:text-xl text-foreground leading-relaxed font-medium">
-              First principles over patterns. Leverage over effort.
-            </p>
+          {/* Right Column: High-DPI Topology Constellation */}
+          <div className="lg:col-span-6">
+            <ArchitectureConstellation />
+          </div>
+        </div>
+
+        {/* Bottom Highlights */}
+        <div className="flex flex-wrap items-center justify-between gap-y-3 pt-10 mt-10 border-t border-foreground/[0.06] text-xs text-muted-foreground font-mono tracking-wide">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="flex items-center gap-2 text-foreground/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+              NEXT.JS & REACT
+            </span>
+            <span className="flex items-center gap-2 text-foreground/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              FASTAPI & PYTHON
+            </span>
+            <span className="flex items-center gap-2 text-foreground/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+              LLMS & VECTOR RAG
+            </span>
+          </div>
+
+          <div className="text-foreground/40 font-mono text-[11px]">
+            BENGALURU, INDIA
           </div>
         </div>
       </div>

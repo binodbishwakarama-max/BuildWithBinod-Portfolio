@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { Github, Linkedin, Mail, MapPin, Send, AlertCircle, CheckCircle } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Send, AlertCircle, CheckCircle, Terminal, Copy, Check } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { submitContactForm, ContactFormData } from '../utils/api';
+import confetti from 'canvas-confetti';
+import { SpotlightCard } from './ui/SpotlightCard';
+import { sounds } from '../utils/soundEffects';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -25,6 +28,7 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -62,16 +66,25 @@ export function Contact() {
     setErrorMessage('');
 
     if (!validateForm()) {
+      sounds.playClick();
       return;
     }
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    sounds.playClick();
 
     try {
       const result = await submitContactForm(formData);
       if (result.success) {
         setSubmitStatus('success');
+        sounds.playChime();
+        confetti({
+          particleCount: 60,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#3b82f6', '#6366f1', '#06b6d4'],
+        });
         setFormData({ name: '', email: '', subject: '', message: '' });
         setErrors({});
         setTimeout(() => setSubmitStatus('idle'), 5000);
@@ -90,178 +103,178 @@ export function Contact() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-    // Clear error for this field when user starts typing
     if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [name]: undefined,
       }));
     }
   };
 
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('binodbishwakarama@gmail.com');
+    setCopiedEmail(true);
+    sounds.playChime();
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const inputClass = (hasError: boolean) =>
+    `w-full px-4 py-3.5 rounded-xl border bg-foreground/[0.02] text-foreground text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500/50 transition-all ${
+      hasError ? 'border-destructive/50' : 'border-foreground/[0.08]'
+    }`;
+
   return (
-    <section id="contact" className="py-20 sm:py-24 bg-card transition-colors duration-300 scroll-mt-28">
-      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 tracking-tight text-foreground">
-            Contact
+    <section id="contact" className="py-24 sm:py-32 bg-background transition-colors duration-500 scroll-mt-28 relative">
+      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-8 lg:px-12" ref={revealRef}>
+        
+        {/* Section Header */}
+        <div className="mb-16 sm:mb-20">
+          <div className="text-xs font-mono text-muted-foreground tracking-[0.2em] uppercase mb-4">
+            [05] // GET IN TOUCH
+          </div>
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-foreground font-display max-w-3xl">
+            Let's connect and build something impactful.
           </h2>
-          <p className="text-center text-base sm:text-lg mb-12 sm:mb-16 text-muted-foreground">
-            Let's discuss your next project
-          </p>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
-            {/* Contact Information */}
-            <div className="space-y-6 sm:space-y-8 rounded-[1.5rem] border border-white/10 dark:border-white/5 bg-background/40 backdrop-blur-2xl p-6 sm:p-8">
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 tracking-tight text-foreground">
-                  Contact Information
-                </h3>
-                <p className="text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 text-muted-foreground">
-                  I'm always interested in hearing about new projects and opportunities.
-                  Whether you have a question or just want to say hi, feel free to reach out!
-                </p>
-              </div>
+        {/* Contact Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          {/* Left Column: Direct Links & Info */}
+          <div className="lg:col-span-5 space-y-6">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-sm">
+              Open for AI Engineering and Full-Stack Software Engineering opportunities, collaborations, and technical discussions. I respond promptly.
+            </p>
 
-              <div className="space-y-4">
+            <div className="space-y-3">
+              {/* Copy Email Button Card */}
+              <div
+                onClick={handleCopyEmail}
+                className="flex items-center justify-between p-4 rounded-xl border border-foreground/[0.08] bg-foreground/[0.015] hover:border-foreground/[0.18] transition-all cursor-pointer group"
+              >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-accent/10">
-                    <Mail className="w-6 h-6 text-accent" />
+                  <div className="p-2.5 rounded-lg bg-blue-500/10">
+                    <Mail className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">
-                      Email
-                    </p>
-                    <p className="font-medium text-foreground break-all">
+                    <span className="text-[10px] font-mono text-muted-foreground block uppercase">DIRECT EMAIL</span>
+                    <span className="text-sm font-mono font-semibold text-foreground group-hover:text-blue-500 dark:group-hover:text-cyan-400 transition-colors">
                       binodbishwakarama@gmail.com
-                    </p>
+                    </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-accent/10">
-                    <MapPin className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">
-                      Location
-                    </p>
-                    <p className="font-medium text-foreground">
-                      Bengaluru, Karnataka, India
-                    </p>
-                  </div>
+                <div className="p-2 text-muted-foreground group-hover:text-foreground">
+                  {copiedEmail ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
                 </div>
               </div>
 
-              <div>
-                <h4 className="font-semibold mb-4 tracking-tight text-foreground">
-                  Connect With Me
-                </h4>
-                <div className="flex gap-4">
-                  <a
-                    href="https://github.com/binodbishwakarama-max"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 bg-accent/10 text-accent hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
-                  >
-                    <Github className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://linkedin.com/in/binodbishwakarama"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 bg-accent/10 text-accent hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
-                  >
-                    <Linkedin className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="mailto:binodbishwakarama@gmail.com"
-                    className="w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 bg-accent/10 text-accent hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
-                  >
-                    <Mail className="w-6 h-6" />
-                  </a>
+              {/* Location Card */}
+              <div className="flex items-center gap-4 p-4 rounded-xl border border-foreground/[0.08] bg-foreground/[0.015]">
+                <div className="p-2.5 rounded-lg bg-indigo-500/10">
+                  <MapPin className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono text-muted-foreground block uppercase">LOCATION</span>
+                  <span className="text-sm font-semibold text-foreground">
+                    Bengaluru, Karnataka, India
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Contact Form */}
-            <div className="rounded-[1.5rem] border border-white/10 dark:border-white/5 bg-background/40 backdrop-blur-2xl p-6 sm:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            {/* Social Links */}
+            <div className="flex gap-3 pt-2">
+              <a
+                href="https://github.com/binodbishwakarama-max"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => sounds.playClick()}
+                className="flex-1 py-3 px-4 rounded-xl border border-foreground/[0.08] bg-foreground/[0.015] hover:border-foreground/[0.18] hover:bg-foreground/[0.03] transition-all flex items-center justify-center gap-2 text-xs font-semibold text-foreground cursor-pointer"
+              >
+                <Github className="w-4 h-4" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/binodbishwakarama"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => sounds.playClick()}
+                className="flex-1 py-3 px-4 rounded-xl border border-foreground/[0.08] bg-foreground/[0.015] hover:border-foreground/[0.18] hover:bg-foreground/[0.03] transition-all flex items-center justify-center gap-2 text-xs font-semibold text-foreground cursor-pointer"
+              >
+                <Linkedin className="w-4 h-4" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Spotlight Form */}
+          <div className="lg:col-span-7">
+            <SpotlightCard
+              spotlightColor="rgba(59, 130, 246, 0.12)"
+              className="p-7 sm:p-9"
+            >
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 {submitStatus === 'error' && (
-                  <div className="p-4 rounded-lg border border-destructive/50 bg-destructive/10 flex gap-3">
+                  <div className="p-4 rounded-xl border border-destructive/30 bg-destructive/5 flex gap-3">
                     <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-destructive">{errorMessage}</p>
                   </div>
                 )}
 
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block mb-2 text-sm font-medium text-foreground"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    disabled={isSubmitting}
-                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition-all duration-300 bg-input/40 backdrop-blur-md text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
-                      errors.name
-                        ? 'border-destructive/40 focus:ring-destructive/30'
-                        : 'border-border/60 focus:ring-accent/30 focus:border-accent/40'
-                    }`}
-                    placeholder="Your name"
-                  />
-                  {errors.name && (
-                    <p className="mt-1.5 text-sm text-destructive flex items-center gap-1.5">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.name}
-                    </p>
-                  )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className="block mb-2 text-xs font-mono font-medium text-muted-foreground">
+                      // YOUR NAME
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
+                      className={inputClass(!!errors.name)}
+                      placeholder="Jane Doe"
+                    />
+                    {errors.name && (
+                      <p className="mt-1.5 text-xs text-destructive flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.name}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block mb-2 text-xs font-mono font-medium text-muted-foreground">
+                      // EMAIL ADDRESS
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
+                      className={inputClass(!!errors.email)}
+                      placeholder="jane@company.com"
+                    />
+                    {errors.email && (
+                      <p className="mt-1.5 text-xs text-destructive flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-foreground"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    disabled={isSubmitting}
-                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition-all duration-300 bg-input/40 backdrop-blur-md text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
-                      errors.email
-                        ? 'border-destructive/40 focus:ring-destructive/30'
-                        : 'border-border/60 focus:ring-accent/30 focus:border-accent/40'
-                    }`}
-                    placeholder="your.email@example.com"
-                  />
-                  {errors.email && (
-                    <p className="mt-1.5 text-sm text-destructive flex items-center gap-1.5">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.email}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block mb-2 text-sm font-medium text-foreground"
-                  >
-                    Subject
+                  <label htmlFor="subject" className="block mb-2 text-xs font-mono font-medium text-muted-foreground">
+                    // SUBJECT
                   </label>
                   <input
                     type="text"
@@ -270,27 +283,20 @@ export function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition-all duration-300 bg-input/40 backdrop-blur-md text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
-                      errors.subject
-                        ? 'border-destructive/40 focus:ring-destructive/30'
-                        : 'border-border/60 focus:ring-accent/30 focus:border-accent/40'
-                    }`}
-                    placeholder="How can I help you?"
+                    className={inputClass(!!errors.subject)}
+                    placeholder="Project Inquiry / AI Architecture Role"
                   />
                   {errors.subject && (
-                    <p className="mt-1.5 text-sm text-destructive flex items-center gap-1.5">
-                      <AlertCircle className="w-4 h-4" />
+                    <p className="mt-1.5 text-xs text-destructive flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" />
                       {errors.subject}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block mb-2 text-sm font-medium text-foreground"
-                  >
-                    Message
+                  <label htmlFor="message" className="block mb-2 text-xs font-mono font-medium text-muted-foreground">
+                    // MESSAGE
                   </label>
                   <textarea
                     id="message"
@@ -298,17 +304,13 @@ export function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition-all duration-300 resize-none bg-input/40 backdrop-blur-md text-foreground disabled:opacity-50 disabled:cursor-not-allowed ${
-                      errors.message
-                        ? 'border-destructive/40 focus:ring-destructive/30'
-                        : 'border-border/60 focus:ring-accent/30 focus:border-accent/40'
-                    }`}
                     rows={5}
-                    placeholder="Tell me about your project..."
+                    className={`${inputClass(!!errors.message)} resize-none`}
+                    placeholder="Tell me about the project goals or engineering challenge..."
                   />
                   {errors.message && (
-                    <p className="mt-1.5 text-sm text-destructive flex items-center gap-1.5">
-                      <AlertCircle className="w-4 h-4" />
+                    <p className="mt-1.5 text-xs text-destructive flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" />
                       {errors.message}
                     </p>
                   )}
@@ -317,40 +319,23 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting || submitStatus === 'success'}
-                  className={`w-full px-6 py-4 rounded-xl font-medium transition-all duration-300 ease-out flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent cursor-pointer ${
-                    isSubmitting
-                      ? 'bg-accent/50 cursor-not-allowed text-accent-foreground'
-                      : submitStatus === 'success'
-                        ? 'bg-green-500 text-white cursor-default animate-pulse'
-                        : submitStatus === 'error'
-                          ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
-                          : 'bg-accent text-accent-foreground hover:bg-accent-hover shadow-md hover:shadow-lg hover:shadow-accent/15 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]'
-                  }`}
+                  className="w-full py-4 rounded-xl bg-foreground text-background font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md active:scale-[0.99] cursor-pointer disabled:opacity-60"
                 >
                   {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      Sending...
-                    </>
+                    <span>Sending...</span>
                   ) : submitStatus === 'success' ? (
-                    <>
-                      <CheckCircle className="w-5 h-5" />
-                      Message Sent Successfully!
-                    </>
-                  ) : submitStatus === 'error' ? (
-                    <>
-                      <AlertCircle className="w-5 h-5" />
-                      Failed to send. Try again?
-                    </>
+                    <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                      <CheckCircle className="w-4 h-4" /> Message Sent Successfully!
+                    </span>
                   ) : (
                     <>
-                      <Send className="w-5 h-5" />
-                      Send Message
+                      <span>Send Message</span>
+                      <Send className="w-4 h-4" />
                     </>
                   )}
                 </button>
               </form>
-            </div>
+            </SpotlightCard>
           </div>
         </div>
       </div>

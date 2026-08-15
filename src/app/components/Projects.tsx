@@ -1,303 +1,274 @@
-import { useState } from 'react';
-import { ExternalLink, Github, Plus, Trash2, Edit } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import { usePortfolio, Project } from '../context/PortfolioContext';
-import { TiltCard } from './ui/TiltCard';
+import { usePortfolio } from '../context/PortfolioContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-
-type ArtworkTheme = {
-  base: string;
-  glow: string;
-  accent: string;
-  panel: string;
-  surface: string;
-  stroke: string;
-  detail: string;
-};
-
-const PROJECT_ART_THEMES: ArtworkTheme[] = [
-  {
-    base: '#081226',
-    glow: '#7CFFDB',
-    accent: '#2B8DFF',
-    panel: '#112347',
-    surface: '#DFF6FF',
-    stroke: '#9FE1FF',
-    detail: '#9AFBE5',
-  },
-  {
-    base: '#071821',
-    glow: '#97FFE0',
-    accent: '#2DE0B8',
-    panel: '#103036',
-    surface: '#E7FFF8',
-    stroke: '#9EF4D8',
-    detail: '#7AF4FF',
-  },
-  {
-    base: '#10111C',
-    glow: '#FF8DE1',
-    accent: '#7E5FFF',
-    panel: '#26193C',
-    surface: '#F9EAFF',
-    stroke: '#E7C4FF',
-    detail: '#FFC7EB',
-  },
-  {
-    base: '#130F1E',
-    glow: '#FF758F',
-    accent: '#6E68FF',
-    panel: '#2B1E45',
-    surface: '#FFEAF0',
-    stroke: '#F6B7C5',
-    detail: '#C6B8FF',
-  },
-  {
-    base: '#0D1724',
-    glow: '#9CFFD5',
-    accent: '#4CA6FF',
-    panel: '#163250',
-    surface: '#E6FFF3',
-    stroke: '#9CDAFF',
-    detail: '#A7FFE7',
-  },
-];
-
-const buildProjectBackdrop = (theme: ArtworkTheme) =>
-  `data:image/svg+xml;utf8,${encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none">
-      <defs>
-        <linearGradient id="panel" x1="160" y1="120" x2="1040" y2="780" gradientUnits="userSpaceOnUse">
-          <stop stop-color="${theme.surface}" stop-opacity="0.15" />
-          <stop offset="1" stop-color="${theme.panel}" stop-opacity="0.72" />
-        </linearGradient>
-        <linearGradient id="screen" x1="240" y1="220" x2="960" y2="660" gradientUnits="userSpaceOnUse">
-          <stop stop-color="${theme.surface}" stop-opacity="0.22" />
-          <stop offset="1" stop-color="${theme.surface}" stop-opacity="0.06" />
-        </linearGradient>
-        <linearGradient id="glow" x1="180" y1="260" x2="720" y2="640" gradientUnits="userSpaceOnUse">
-          <stop stop-color="${theme.accent}" stop-opacity="0.82" />
-          <stop offset="1" stop-color="${theme.detail}" stop-opacity="0.56" />
-        </linearGradient>
-      </defs>
-      <rect width="1200" height="900" fill="${theme.base}" />
-      <circle cx="1040" cy="150" r="220" fill="${theme.glow}" fill-opacity="0.16" />
-      <circle cx="190" cy="760" r="260" fill="${theme.accent}" fill-opacity="0.14" />
-      <rect x="96" y="104" width="1008" height="692" rx="40" fill="url(#panel)" stroke="${theme.stroke}" stroke-opacity="0.26" />
-      <rect x="132" y="142" width="936" height="54" rx="27" fill="${theme.surface}" fill-opacity="0.09" />
-      <circle cx="170" cy="169" r="8" fill="${theme.detail}" fill-opacity="0.78" />
-      <circle cx="198" cy="169" r="8" fill="${theme.surface}" fill-opacity="0.72" />
-      <circle cx="226" cy="169" r="8" fill="${theme.accent}" fill-opacity="0.7" />
-      <rect x="258" y="156" width="236" height="24" rx="12" fill="${theme.surface}" fill-opacity="0.18" />
-      <rect x="152" y="228" width="428" height="252" rx="28" fill="url(#screen)" stroke="${theme.stroke}" stroke-opacity="0.2" />
-      <path d="M190 406L274 352L344 380L424 294L500 324L548 272" stroke="url(#glow)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
-      <rect x="192" y="440" width="94" height="12" rx="6" fill="${theme.surface}" fill-opacity="0.16" />
-      <rect x="152" y="524" width="200" height="112" rx="24" fill="${theme.surface}" fill-opacity="0.1" />
-      <rect x="376" y="524" width="204" height="112" rx="24" fill="${theme.surface}" fill-opacity="0.08" />
-      <rect x="620" y="228" width="280" height="124" rx="26" fill="${theme.surface}" fill-opacity="0.12" stroke="${theme.stroke}" stroke-opacity="0.18" />
-      <rect x="652" y="262" width="128" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.18" />
-      <rect x="652" y="298" width="216" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.1" />
-      <rect x="928" y="228" width="108" height="124" rx="26" fill="${theme.accent}" fill-opacity="0.2" />
-      <rect x="620" y="384" width="416" height="252" rx="32" fill="${theme.surface}" fill-opacity="0.08" stroke="${theme.stroke}" stroke-opacity="0.16" />
-      <rect x="656" y="420" width="344" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.16" />
-      <rect x="656" y="456" width="228" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.1" />
-      <rect x="656" y="522" width="140" height="76" rx="20" fill="${theme.accent}" fill-opacity="0.2" />
-      <rect x="822" y="522" width="178" height="76" rx="20" fill="${theme.surface}" fill-opacity="0.12" />
-      <rect x="656" y="654" width="96" height="18" rx="9" fill="${theme.surface}" fill-opacity="0.12" />
-      <rect x="152" y="676" width="220" height="20" rx="10" fill="${theme.surface}" fill-opacity="0.12" />
-    </svg>
-  `)}`;
-
-const DECORATIVE_PROJECT_ART = PROJECT_ART_THEMES.map(buildProjectBackdrop);
-
-const usesTextHeavyInlineSvg = (image: string) =>
-  image.startsWith('data:image/svg+xml') && image.includes('%3Ctext');
-
-const getProjectArtwork = (project: Project, index: number) =>
-  usesTextHeavyInlineSvg(project.image)
-    ? DECORATIVE_PROJECT_ART[index % DECORATIVE_PROJECT_ART.length]
-    : project.image;
+import { ArrowUpRight, Github, Sparkles, Terminal, Layers, Shield, Zap } from 'lucide-react';
+import { SpotlightCard } from './ui/SpotlightCard';
+import { sounds } from '../utils/soundEffects';
 
 export function Projects() {
-  const { data, isAdmin, addProject, deleteProject, updateProject, isLoading } = usePortfolio();
+  const { data, isLoading } = usePortfolio();
   const projects = data.projects;
   const revealRef = useScrollReveal();
 
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState<Partial<Project>>({});
+  if (isLoading) {
+    return (
+      <section id="projects" className="py-24 sm:py-32 bg-background scroll-mt-28">
+        <div className="flex justify-center py-24">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-foreground"></div>
+        </div>
+      </section>
+    );
+  }
 
-  const handleAddNew = () => {
-    const title = window.prompt('Project Title:');
-    if (!title) return;
-    const desc = window.prompt('Project Description:');
-    const tagsInput = window.prompt('Tags (comma separated):', 'React, TypeScript');
-    const tags = tagsInput ? tagsInput.split(',').map(t => t.trim()) : [];
-
-    const newProject: Project = {
-      id: `proj-${Date.now()}`,
-      title,
-      description: desc || 'New Project Description',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1080',
-      tags,
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    };
-    addProject(newProject);
-  };
-
-  const startEdit = (project: Project) => {
-    setEditingId(project.id);
-    setFormData(project);
-  };
-
-  const saveEdit = () => {
-    if (editingId && formData.title) {
-      updateProject(editingId, formData as Project);
-    }
-    setEditingId(null);
-  };
-
-  const getArtworkBackdrop = (i: number) => {
-    switch (i % 5) {
-      case 0:
-        return 'from-cyan-400/20 via-blue-500/10 to-background';
-      case 1:
-        return 'from-emerald-400/20 via-teal-500/10 to-background';
-      case 2:
-        return 'from-fuchsia-400/20 via-violet-500/10 to-background';
-      case 3:
-        return 'from-rose-400/20 via-indigo-500/10 to-background';
-      case 4:
-        return 'from-sky-400/20 via-emerald-500/10 to-background';
-      default:
-        return 'from-accent/20 via-accent/10 to-background';
-    }
-  };
+  const heroProject = projects[0];
+  const gridProjects = projects.slice(1);
 
   return (
-    <section id="projects" className="py-20 sm:py-24 lg:py-32 bg-background transition-colors duration-300 scroll-mt-28">
-      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
-              Projects
+    <section id="projects" className="py-24 sm:py-32 bg-background transition-colors duration-500 scroll-mt-28 relative">
+      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-8 lg:px-12" ref={revealRef}>
+        
+        {/* Section Header */}
+        <div className="mb-16 sm:mb-20">
+          <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground tracking-[0.2em] uppercase mb-4">
+            <Terminal className="w-3.5 h-3.5 text-emerald-500" />
+            <span>[04] // FEATURED ENGINEERING</span>
+          </div>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-foreground font-display">
+              Production Case Studies
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
-              A selection of products I designed and shipped, spanning AI workflows, PWAs, dashboards, and full-stack web apps.
+            <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+              Architected for high throughput, sub-100ms vector lookups, and uncompromising reliability.
             </p>
           </div>
+        </div>
 
-          {isLoading ? (
-            <div className="flex justify-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 sm:gap-6 auto-rows-[380px] sm:auto-rows-[420px] lg:auto-rows-[450px]">
-              {projects.map((project, index) => {
-                const getLayout = (i: number) => {
-                  switch (i % 5) {
-                    case 0: return 'md:col-span-6 lg:col-span-8';
-                    case 1: return 'md:col-span-6 lg:col-span-4';
-                    case 2: return 'md:col-span-4 lg:col-span-4';
-                    case 3: return 'md:col-span-4 lg:col-span-4';
-                    case 4: return 'md:col-span-4 lg:col-span-4';
-                    default: return 'md:col-span-6 lg:col-span-4';
-                  }
-                };
+        {/* Hero Spotlight Project */}
+        {heroProject && (
+          <SpotlightCard
+            spotlightColor="rgba(59, 130, 246, 0.16)"
+            className="mb-12 sm:mb-16 group p-0 overflow-hidden"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              {/* Left Column: Image with Browser Mockup Header */}
+              <div className="lg:col-span-6 relative flex flex-col bg-muted/40 border-b lg:border-b-0 lg:border-r border-foreground/[0.08]">
+                {/* Browser Mockup Chrome Header */}
+                <div className="px-4 py-3 bg-foreground/[0.03] border-b border-foreground/[0.06] flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
+                  </div>
+                  <div className="px-3 py-1 rounded-md bg-foreground/[0.04] text-[11px] font-mono text-muted-foreground truncate">
+                    replysync.cloud/dashboard
+                  </div>
+                  <div className="w-8" />
+                </div>
 
-                const cardArtwork = getProjectArtwork(project, index);
-                const usesGeneratedArtwork = cardArtwork !== project.image;
+                <div className="relative aspect-[16/10] lg:aspect-auto flex-1 overflow-hidden">
+                  <img
+                    src={heroProject.image}
+                    alt={heroProject.title}
+                    loading="eager"
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out min-h-[320px]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
 
-                return (
-                  <TiltCard key={project.id} className={getLayout(index)}>
-                    <div className="group relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 dark:border-white/5 transition-all duration-500 ease-out hover:border-white/20 dark:hover:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_32px_rgba(0,0,0,0.02)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_16px_48px_rgba(0,0,0,0.12)] bg-card/10 backdrop-blur-3xl">
-                      {isAdmin && (
-                        <div className="absolute top-4 right-4 z-50 flex gap-2">
-                          <button onClick={() => startEdit(project)} className="p-2 bg-accent text-accent-foreground rounded-md shadow"><Edit size={16} /></button>
-                          <button onClick={() => { if (window.confirm('Delete project?')) deleteProject(project.id); }} className="p-2 bg-destructive text-destructive-foreground rounded-md shadow"><Trash2 size={16} /></button>
-                        </div>
-                      )}
+              {/* Right Column: Case Study Details */}
+              <div className="lg:col-span-6 p-8 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6">
+                <div>
+                  <div className="flex items-center justify-between text-xs font-mono text-muted-foreground mb-4">
+                    <span className="px-2.5 py-1 rounded-full bg-foreground/[0.06] border border-foreground/[0.08] font-bold text-foreground">
+                      FEATURED // 01
+                    </span>
+                    {heroProject.liveUrl && (
+                      <span className="flex items-center gap-1.5 text-emerald-500 font-semibold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        PRODUCTION LIVE
+                      </span>
+                    )}
+                  </div>
 
-                      {editingId === project.id ? (
-                        <div className="p-6 sm:p-8 flex flex-col gap-4 text-card-foreground absolute inset-0 z-40 bg-card overflow-auto">
-                          <label className="font-bold">Title</label>
-                          <input className="border border-border bg-input p-2 rounded text-foreground" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
-                          <label className="font-bold">Description</label>
-                          <textarea className="border border-border bg-input p-2 rounded h-24 text-foreground" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })} />
-                          <label className="font-bold">Tags (comma separated)</label>
-                          <input className="border border-border bg-input p-2 rounded text-foreground" value={formData.tags?.join(', ')} onChange={e => setFormData({ ...formData, tags: e.target.value.split(',').map(t => t.trim()) })} />
-                          <label className="font-bold">Image URL</label>
-                          <input className="border border-border bg-input p-2 rounded text-foreground" value={formData.image} onChange={e => setFormData({ ...formData, image: e.target.value })} />
-                          <div className="flex gap-2 mt-4">
-                            <button onClick={saveEdit} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Save</button>
-                            <button onClick={() => setEditingId(null)} className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Cancel</button>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <div className={`absolute inset-0 z-0 bg-gradient-to-br ${getArtworkBackdrop(index)} dark:from-background dark:via-background/30 dark:to-background`}>
-                            <ImageWithFallback
-                              src={cardArtwork}
-                              alt={project.title}
-                              className={`w-full h-full object-cover object-center transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) md:group-hover:scale-[1.04] md:group-hover:opacity-100 ${
-                                usesGeneratedArtwork
-                                  ? 'opacity-95 dark:opacity-55 md:dark:opacity-42'
-                                  : 'opacity-90 dark:opacity-60 md:dark:opacity-40'
-                              }`}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/96 via-background/70 to-background/12 md:from-background/94 md:via-background/52 md:to-transparent dark:from-background dark:via-background/82 dark:to-background/6"></div>
-                            <div className="absolute inset-y-0 left-0 w-[72%] bg-gradient-to-r from-background/30 via-background/8 to-transparent md:w-[54%]"></div>
-                          </div>
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground font-display">
+                    {heroProject.title}
+                  </h3>
 
-                          <div className="relative z-10 w-full h-full p-6 sm:p-8 flex flex-col justify-end">
-                            <div className="transform transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1) md:translate-y-4 md:group-hover:-translate-y-2">
-                              <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tighter text-foreground drop-shadow-sm">
-                                {project.title}
-                              </h3>
-                              <p className="mb-5 sm:mb-6 leading-relaxed text-sm sm:text-base text-muted-foreground line-clamp-3 md:line-clamp-3 md:group-hover:line-clamp-none transition-all duration-300">
-                                {project.description}
-                              </p>
-                              <div className="flex flex-wrap gap-2 mb-5 sm:mb-6">
-                                {project.tags.map((tag) => (
-                                  <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-background/40 dark:bg-white/5 border border-white/10 dark:border-white/5 text-foreground/90 backdrop-blur-md">
-                                    {tag}
-                                  </span>
-                                ))}
-                              </div>
-                              <div className="flex flex-wrap gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                                {project.githubUrl && project.githubUrl !== '#' && (
-                                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] border border-white/15 hover:border-white/30 dark:border-white/10 dark:hover:border-white/20 text-foreground hover:bg-white/10 backdrop-blur-md font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-foreground">
-                                    <Github className="w-4 h-4" /> Code
-                                  </a>
-                                )}
-                                {project.liveUrl && project.liveUrl !== '#' && (
-                                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] bg-foreground text-background hover:bg-foreground/95 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-foreground font-medium text-sm">
-                                    <ExternalLink className="w-4 h-4" /> Live Demo
-                                  </a>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </>
-                      )}
+                  <p className="text-sm sm:text-base text-muted-foreground mt-3 leading-relaxed">
+                    {heroProject.description}
+                  </p>
+
+                  {/* Architecture Specs Highlights */}
+                  <div className="grid grid-cols-2 gap-3 mt-6 pt-6 border-t border-foreground/[0.06]">
+                    <div className="flex items-start gap-2 text-xs">
+                      <Shield className="w-4 h-4 text-cyan-500 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-semibold text-foreground block">Zero-Knowledge Vault</span>
+                        <span className="text-muted-foreground text-[11px]">AES-256 encrypted tenant secrets</span>
+                      </div>
                     </div>
-                  </TiltCard>
-                );
-              })}
-            </div>
-          )}
+                    <div className="flex items-start gap-2 text-xs">
+                      <Zap className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-semibold text-foreground block">Webhook Idempotency</span>
+                        <span className="text-muted-foreground text-[11px]">Zero message duplication</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          {isAdmin && (
-            <div className="mt-12 flex justify-center">
-              <button
-                onClick={handleAddNew}
-                className="flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full border-2 border-dashed border-border/50 hover:border-accent hover:text-accent transition-colors text-muted-foreground font-medium"
-              >
-                <Plus size={20} />
-                Add New Project
-              </button>
+                {/* Tech Tags */}
+                <div className="space-y-3">
+                  <div className="flex flex-wrap gap-2">
+                    {heroProject.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-foreground/[0.04] text-foreground/80 border border-foreground/[0.04]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap items-center gap-3 pt-2">
+                    {heroProject.liveUrl && (
+                      <a
+                        href={heroProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => sounds.playClick()}
+                        className="px-6 py-3 rounded-full bg-foreground text-background font-semibold text-sm hover:opacity-90 transition-all flex items-center gap-2 shadow-sm hover:shadow-md cursor-pointer"
+                      >
+                        <span>Launch App</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    )}
+                    {heroProject.githubUrl && (
+                      <a
+                        href={heroProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => sounds.playClick()}
+                        className="px-5 py-3 rounded-full border border-foreground/[0.1] text-foreground font-semibold text-sm hover:border-foreground/25 hover:bg-foreground/[0.03] transition-all flex items-center gap-2 cursor-pointer"
+                      >
+                        <Github className="w-4 h-4" />
+                        <span>Source Code</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-          )}
+          </SpotlightCard>
+        )}
+
+        {/* 2-Column Grid Projects */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {gridProjects.map((project, idx) => (
+            <SpotlightCard
+              key={project.id}
+              spotlightColor="rgba(99, 102, 241, 0.15)"
+              className="p-0 flex flex-col justify-between group overflow-hidden"
+            >
+              {/* Browser Chrome Header */}
+              <div className="relative">
+                <div className="px-4 py-2.5 bg-foreground/[0.03] border-b border-foreground/[0.06] flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-foreground/20" />
+                    <span className="w-2 h-2 rounded-full bg-foreground/20" />
+                    <span className="w-2 h-2 rounded-full bg-foreground/20" />
+                  </div>
+                  <div className="px-3 py-0.5 rounded-md bg-foreground/[0.03] text-[10px] font-mono text-muted-foreground truncate max-w-[180px]">
+                    {project.title.toLowerCase().replace(/\s+/g, '-')}.app
+                  </div>
+                  <span className="text-[10px] font-mono text-muted-foreground font-bold">
+                    0{idx + 2}
+                  </span>
+                </div>
+
+                <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+
+              {/* Content Body */}
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-4">
+                <div>
+                  <div className="flex items-center justify-between text-xs font-mono text-muted-foreground mb-2">
+                    <span className="text-cyan-500 font-semibold">{project.tags[0]}</span>
+                    {project.liveUrl && (
+                      <span className="flex items-center gap-1 text-emerald-500 font-semibold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        LIVE
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground group-hover:text-blue-500 dark:group-hover:text-cyan-400 transition-colors font-display">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed line-clamp-2">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Tags & Action Links */}
+                <div className="space-y-4 pt-2 border-t border-foreground/[0.06]">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.slice(0, 4).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-foreground/[0.04] text-foreground/75 border border-foreground/[0.04]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {project.tags.length > 4 && (
+                      <span className="px-2.5 py-1 text-[11px] font-mono text-muted-foreground">
+                        +{project.tags.length - 4}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between pt-1 text-sm font-semibold">
+                    {project.liveUrl ? (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => sounds.playClick()}
+                        className="text-foreground flex items-center gap-1.5 hover:text-blue-500 dark:hover:text-cyan-400 transition-colors cursor-pointer"
+                      >
+                        <span>Live Demo</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    ) : <span />}
+
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => sounds.playClick()}
+                        className="text-muted-foreground flex items-center gap-1.5 hover:text-foreground transition-colors cursor-pointer"
+                      >
+                        <Github className="w-3.5 h-3.5" />
+                        <span>Source Code</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </SpotlightCard>
+          ))}
         </div>
       </div>
     </section>

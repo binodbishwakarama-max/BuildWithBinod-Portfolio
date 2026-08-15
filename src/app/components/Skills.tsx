@@ -1,148 +1,117 @@
-import { Brain, Layout, Server, Cloud, GraduationCap, Code2, Plus, X, Trash2 } from 'lucide-react';
-import { usePortfolio, SkillCategory } from '../context/PortfolioContext';
-import { TiltCard } from './ui/TiltCard';
+import { usePortfolio } from '../context/PortfolioContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Brain, Layout, Server, Cloud, GraduationCap, Terminal } from 'lucide-react';
+import { SpotlightCard } from './ui/SpotlightCard';
 
-const iconMap: Record<string, any> = {
-  Brain,
-  Layout,
-  Server,
-  Cloud,
-  GraduationCap,
-  Code2
+const domainConfig: Record<string, { icon: any; accent: string; glow: string; spotlight: string }> = {
+  'AI Engineering': { icon: Brain, accent: 'text-violet-500 dark:text-violet-400', glow: 'bg-violet-500/10', spotlight: 'rgba(139, 92, 246, 0.18)' },
+  'Frontend': { icon: Layout, accent: 'text-cyan-500 dark:text-cyan-400', glow: 'bg-cyan-500/10', spotlight: 'rgba(6, 182, 212, 0.18)' },
+  'Backend': { icon: Server, accent: 'text-blue-500 dark:text-blue-400', glow: 'bg-blue-500/10', spotlight: 'rgba(59, 130, 246, 0.18)' },
+  'Cloud & DevOps': { icon: Cloud, accent: 'text-emerald-500 dark:text-emerald-400', glow: 'bg-emerald-500/10', spotlight: 'rgba(16, 185, 129, 0.18)' },
+  'Currently Learning': { icon: GraduationCap, accent: 'text-amber-500 dark:text-amber-400', glow: 'bg-amber-500/10', spotlight: 'rgba(245, 158, 11, 0.18)' },
 };
 
 export function Skills() {
-  const { data, isAdmin, addSkillCategory, deleteSkillCategory, addSkillToCategory, removeSkillFromCategory, isLoading } = usePortfolio();
+  const { data, isLoading } = usePortfolio();
   const revealRef = useScrollReveal();
 
-  const handleAddCategory = () => {
-    const category = window.prompt('Category Name:');
-    if (!category) return;
-
-    // Default to Code2 if they don't pick one, or we could ask for an icon name
-    const newCat: SkillCategory = {
-      id: `cat-${Date.now()}`,
-      category,
-      iconName: 'Code2',
-      skills: []
-    };
-    addSkillCategory(newCat);
-  };
-
-  const handleAddSkill = (categoryId: string) => {
-    const skill = window.prompt('Enter new skill name:');
-    if (skill) {
-      addSkillToCategory(categoryId, skill.trim());
-    }
-  };
+  // Flattened skill list for marquee
+  const allSkills = data.skills.flatMap(cat => cat.skills);
 
   return (
-    <section id="skills" className="py-20 sm:py-24 lg:py-32 bg-background transition-colors duration-300 scroll-mt-28">
-      <div className="max-w-[1440px] w-full mx-auto px-5 sm:px-6 lg:px-8" ref={revealRef}>
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
-              Skills
+    <section id="skills" className="py-24 sm:py-32 bg-background transition-colors duration-500 scroll-mt-28 relative">
+      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-8 lg:px-12" ref={revealRef}>
+        
+        {/* Section Header */}
+        <div className="mb-16 sm:mb-20">
+          <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground tracking-[0.2em] uppercase mb-4">
+            <Terminal className="w-3.5 h-3.5 text-indigo-500" />
+            <span>[03] // CAPABILITY MATRIX</span>
+          </div>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-foreground font-display max-w-2xl">
+              Technical Stack & Tooling
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
-              The core technologies and tools I leverage to engineer robust, scalable solutions.
+            <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
+              Curated around low-latency execution, high retrieval accuracy, and modular distributed architectures.
             </p>
           </div>
+        </div>
 
-          {isLoading ? (
-            <div className="flex justify-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 auto-rows-min">
-              {data.skills.map((category, index) => {
-                const Icon = iconMap[category.iconName as keyof typeof iconMap] || Code2;
+        {/* Infinite marquee banner with tech tags */}
+        <div className="relative mb-14 -mx-6 sm:-mx-8 lg:-mx-12 overflow-hidden">
+          <div className="absolute inset-y-0 left-0 w-24 sm:w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-24 sm:w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          <div className="flex animate-marquee whitespace-nowrap py-3">
+            {[...allSkills, ...allSkills].map((skill, i) => (
+              <span
+                key={`${skill}-${i}`}
+                className="mx-2.5 px-4 py-2 rounded-full text-xs font-mono font-medium border border-foreground/[0.08] text-foreground/80 bg-foreground/[0.02] whitespace-nowrap hover:text-foreground hover:border-foreground/20 hover:bg-foreground/[0.05] transition-all"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
 
-                // Create a bento layout pattern
-                const getColSpan = (i: number) => {
-                  switch (i % 5) {
-                    case 0: return "md:col-span-8 lg:col-span-7";
-                    case 1: return "md:col-span-4 lg:col-span-5";
-                    case 2: return "md:col-span-4 lg:col-span-5";
-                    case 3: return "md:col-span-8 lg:col-span-7";
-                    case 4: return "md:col-span-12 lg:col-span-12";
-                    default: return "md:col-span-6";
-                  }
-                };
+        {/* Bento Grid with Spotlight Effect */}
+        {isLoading ? (
+          <div className="flex justify-center py-24">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-foreground"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {data.skills.map((cat, idx) => {
+              const config = domainConfig[cat.category] || domainConfig['AI Engineering'];
+              const Icon = config.icon;
 
-                return (
-                  <TiltCard key={category.id} className={`${getColSpan(index)} h-full`}>
-                    <div className="group bg-card/10 backdrop-blur-3xl rounded-[2rem] p-6 sm:p-8 lg:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_32px_rgba(0,0,0,0.02)] transition-all duration-500 ease-out border border-white/10 dark:border-white/5 hover:border-white/20 dark:hover:border-white/10 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_12px_48px_rgba(0,0,0,0.04)] relative h-full flex flex-col justify-between overflow-hidden">
-                      {/* Subtle ambient background glow */}
-                      <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-500"></div>
-
-                      {isAdmin && (
-                        <button
-                          onClick={() => { if (window.confirm('Delete this category?')) deleteSkillCategory(category.id); }}
-                          className="absolute top-6 right-6 z-10 text-destructive/50 hover:text-destructive p-2 transition-colors bg-card/50 rounded-full"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      )}
-
-                      <div className="relative z-10">
-                        <div className="flex items-center gap-3.5 sm:gap-4 mb-6 sm:mb-8">
-                          <div className="p-2.5 sm:p-3 rounded-2xl bg-accent/10 border border-accent/20 group-hover:scale-110 group-hover:bg-accent/15 group-hover:border-accent/30 transition-all duration-500 ease-out">
-                            <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-accent" />
-                          </div>
-                          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                            {category.category}
-                          </h3>
+              return (
+                <SpotlightCard
+                  key={cat.id}
+                  spotlightColor={config.spotlight}
+                  className={`p-6 sm:p-7 flex flex-col justify-between ${
+                    idx === 0 ? 'md:col-span-2 lg:col-span-1' : ''
+                  }`}
+                >
+                  <div>
+                    {/* Card Header */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2.5 rounded-xl ${config.glow} transition-transform duration-300`}>
+                          <Icon className={`w-5 h-5 ${config.accent}`} />
                         </div>
-
-                        <div className="flex flex-wrap gap-2">
-                          {category.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium bg-background/50 hover:bg-accent/5 hover:text-accent hover:border-accent/30 border border-border/50 text-foreground/80 transition-all duration-300 ease-out hover:scale-[1.02] group/skill cursor-default"
-                            >
-                              {skill}
-                              {isAdmin && (
-                                <button
-                                  onClick={() => removeSkillFromCategory(category.id, skill)}
-                                  className="text-muted-foreground hover:text-destructive opacity-0 group-hover/skill:opacity-100 transition-opacity ml-1"
-                                >
-                                  <X size={14} />
-                                </button>
-                              )}
-                            </span>
-                          ))}
-
-                          {isAdmin && (
-                            <button
-                              onClick={() => handleAddSkill(category.id)}
-                              className="px-4 py-2 rounded-xl text-sm border border-dashed border-border/50 text-muted-foreground hover:border-accent hover:text-accent flex items-center gap-1 transition-colors bg-transparent"
-                            >
-                              <Plus size={14} /> Add
-                            </button>
-                          )}
+                        <div>
+                          <h3 className="text-lg font-bold tracking-tight text-foreground font-display">
+                            {cat.category}
+                          </h3>
+                          <span className="text-[11px] font-mono text-muted-foreground">
+                            {cat.skills.length} core technologies
+                          </span>
                         </div>
                       </div>
+                      <span className="text-xs font-mono text-muted-foreground/60 font-bold">
+                        0{idx + 1}
+                      </span>
                     </div>
-                  </TiltCard>
-                );
-              })}
-            </div>
-          )}
 
-          {isAdmin && (
-            <div className="mt-12 flex justify-center">
-              <button
-                onClick={handleAddCategory}
-                className="flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full border-2 border-dashed border-border/50 hover:border-accent hover:text-accent transition-colors text-muted-foreground font-medium"
-              >
-                <Plus size={20} />
-                Add Skill Domain
-              </button>
-            </div>
-          )}
-        </div>
+                    {/* Skill Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {cat.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-foreground/[0.04] text-foreground/85 border border-foreground/[0.04] hover:bg-foreground/[0.08] hover:border-foreground/[0.1] transition-colors"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                </SpotlightCard>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

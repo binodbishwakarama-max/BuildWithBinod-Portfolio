@@ -3,7 +3,7 @@
         {
             "id": "proj-replysync",
             "title": "ReplySync",
-            "description": "Built a multi-tenant WhatsApp CRM and automation platform featuring encrypted tenant secrets, Meta signature verification, webhook idempotency, and template-based follow-up campaigns.",
+            "description": "A multi-tenant WhatsApp CRM and business automation platform featuring encrypted tenant vaults, webhook ingestion, and automated follow-up workflows.",
             "image": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
             "tags": [
                 "Next.js",
@@ -11,84 +11,72 @@
                 "WhatsApp API",
                 "SaaS",
                 "CRM",
-                "Database Encryption"
+                "FastAPI"
             ],
-            "githubUrl": "https://github.com/binodbishwakarama-max/aiautomation",
+            "githubUrl": "https://github.com/binodbishwakarma-max/aiautomation",
             "liveUrl": "https://aiautomation-two.vercel.app/"
         },
         {
-            "id": "proj-1",
-            "title": "MindFlow AI Study Assistant",
-            "description": "Built an AI study workflow that lets students upload PDFs, generate flashcards and quizzes, and stay engaged through a gamified revision experience.",
-            "image": "https://images.pexels.com/photos/33936499/pexels-photo-33936499.jpeg?cs=srgb&dl=pexels-minasenishino-33936499.jpg&fm=jpg",
-            "tags": [
-                "AI Study Tools",
-                "Flashcards",
-                "Quizzes",
-                "PDF Upload",
-                "Gamification"
-            ],
-            "githubUrl": "https://github.com/binodbishwakarama-max/Aistudy",
-            "liveUrl": "https://smartstudy-nu.vercel.app/"
-        },
-        {
-            "id": "proj-2",
-            "title": "AI Health PWA",
-            "description": "Built a mobile-first healthcare PWA with AI chat, voice input, and spoken responses to make support more accessible across installable and on-the-go experiences.",
+            "id": "proj-healthlens",
+            "title": "HealthLens",
+            "description": "An AI-powered healthcare platform that improves access to basic health guidance for rural and underserved communities with multilingual voice and chat support.",
             "image": "https://images.pexels.com/photos/5207089/pexels-photo-5207089.jpeg?cs=srgb&dl=pexels-karola-g-5207089.jpg&fm=jpg",
             "tags": [
-                "Progressive Web App",
-                "AI Chat",
-                "Voice Input",
-                "Text to Speech",
-                "Healthcare"
+                "AI Healthcare",
+                "PWA",
+                "Voice AI",
+                "FastAPI",
+                "Python",
+                "LLMs"
             ],
-            "githubUrl": "https://github.com/binodbishwakarama-max/Aihealth",
+            "githubUrl": "https://github.com/binodbishwakarma-max/Aihealth",
             "liveUrl": "https://aihealth-ijnb.vercel.app/"
         },
         {
-            "id": "proj-3",
-            "title": "Smart News App",
-            "description": "Built a full-stack news platform with cleaner reading views, faster search, and smarter story discovery, then packaged it with Docker for a more reliable delivery workflow.",
+            "id": "proj-mindflow",
+            "title": "MindFlow",
+            "description": "An AI-powered learning platform that transforms study materials and PDFs into personalized quizzes, flashcards, and adaptive learning experiences.",
+            "image": "https://images.pexels.com/photos/33936499/pexels-photo-33936499.jpeg?cs=srgb&dl=pexels-minasenishino-33936499.jpg&fm=jpg",
+            "tags": [
+                "RAG",
+                "pgvector",
+                "LLMs",
+                "Next.js",
+                "Python",
+                "Study AI"
+            ],
+            "githubUrl": "https://github.com/binodbishwakarma-max/Aistudy",
+            "liveUrl": "https://smartstudy-nu.vercel.app/"
+        },
+        {
+            "id": "proj-smartnews",
+            "title": "SmartNews",
+            "description": "A news intelligence platform powered by NLP and AI for semantic search, real-time content discovery, and automated article summarization.",
             "image": "https://images.pexels.com/photos/11366392/pexels-photo-11366392.jpeg?cs=srgb&dl=pexels-fotios-photos-11366392.jpg&fm=jpg",
             "tags": [
-                "Full Stack",
-                "Search",
-                "Content Discovery",
+                "NLP",
+                "Python",
+                "FastAPI",
                 "Docker",
-                "News Platform"
+                "React",
+                "Full Stack"
             ],
-            "githubUrl": "https://github.com/binodbishwakarama-max/smartnews",
+            "githubUrl": "https://github.com/binodbishwakarma-max/smartnews",
             "liveUrl": "https://smartnewsap.vercel.app/"
         },
         {
-            "id": "proj-4",
-            "title": "Covid-19 Data Dashboard",
-            "description": "Built a real-time Covid-19 analytics dashboard that turns live data into charts, headline metrics, and quick-glance views for tracking global case trends.",
-            "image": "https://images.pexels.com/photos/6366444/pexels-photo-6366444.jpeg?cs=srgb&dl=pexels-atypeek-6366444.jpg&fm=jpg",
-            "tags": [
-                "Dashboard",
-                "Data Visualization",
-                "Analytics",
-                "API Data",
-                "Real Time Tracking"
-            ],
-            "githubUrl": "https://github.com/binodbishwakarama-max/Covid_Dashboard",
-            "liveUrl": ""
-        },
-        {
-            "id": "proj-5",
-            "title": "Class Attendance Tracker (PWA)",
-            "description": "Built an offline-first attendance tracker for students with simple class-by-class workflows, local data storage, and PWA support for everyday use.",
+            "id": "proj-attendance",
+            "title": "Class Attendance Tracker",
+            "description": "A digital attendance management system for students and educators with offline-first PWA support, local data synchronization, and intuitive class workflows.",
             "image": "https://images.pexels.com/photos/7742816/pexels-photo-7742816.jpeg?cs=srgb&dl=pexels-a-darmel-7742816.jpg&fm=jpg",
             "tags": [
-                "Progressive Web App",
-                "Attendance Tracking",
-                "Offline Support",
+                "PWA",
+                "Offline First",
                 "Local Sync",
-                "Student Productivity"
+                "JavaScript",
+                "Productivity"
             ],
-            "githubUrl": "https://github.com/binodbishwakarama-max/attendance-tracker",
+            "githubUrl": "https://github.com/binodbishwakarma-max/attendance-tracker",
             "liveUrl": "https://binodbishwakarama-max.github.io/attendance-tracker/"
         }
     ],
@@ -134,14 +122,14 @@
             "category": "Backend",
             "iconName": "Server",
             "skills": [
+                "Python",
+                "FastAPI",
                 "Node.js",
                 "Express.js",
-                "FastAPI",
-                "REST APIs",
-                "MongoDB",
                 "PostgreSQL",
                 "Supabase",
-                "Prisma",
+                "REST APIs",
+                "Docker",
                 "Redis",
                 "Authentication"
             ]
@@ -160,8 +148,7 @@
                 "Linux",
                 "Postman",
                 "VS Code",
-                "Cursor",
-                "Claude Code"
+                "Cursor"
             ]
         },
         {
@@ -173,9 +160,6 @@
                 "Agentic AI",
                 "MCP (Model Context Protocol)",
                 "Multi-Agent Systems",
-                "Kubernetes",
-                "AWS",
-                "CI/CD",
                 "System Design"
             ]
         }

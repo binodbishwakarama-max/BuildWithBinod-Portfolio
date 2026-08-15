@@ -1,24 +1,24 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-family: 'Inter', sans-serif;
+  --font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
   --font-size: 16px;
 
-  --background: #ffffff;
-  --foreground: #111111;
-  --card: #f9fafb;
-  --card-foreground: #111111;
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --card: #f5f5f5;
+  --card-foreground: #0a0a0a;
   --popover: #ffffff;
-  --popover-foreground: #111111;
+  --popover-foreground: #0a0a0a;
 
-  --primary: #111111;
-  --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondary-foreground: #111111;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
+  --primary: #0a0a0a;
+  --primary-foreground: #fafafa;
+  --secondary: #f0f0f0;
+  --secondary-foreground: #0a0a0a;
+  --muted: #f0f0f0;
+  --muted-foreground: #737373;
 
-  /* FAANG Electric Blue - Used sparingly */
   --accent: #2563EB;
   --accent-hover: #1D4ED8;
   --accent-foreground: #ffffff;
@@ -26,8 +26,8 @@
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.05);
+  --border: rgba(0, 0, 0, 0.06);
+  --input: rgba(0, 0, 0, 0.04);
   --input-background: #ffffff;
 
   --font-weight-medium: 500;
@@ -38,18 +38,18 @@
 
 .dark {
   --background: #050505;
-  --foreground: #ededed;
+  --foreground: #e5e5e5;
   --card: #0a0a0a;
-  --card-foreground: #ededed;
+  --card-foreground: #e5e5e5;
   --popover: #0a0a0a;
-  --popover-foreground: #ededed;
+  --popover-foreground: #e5e5e5;
 
-  --primary: #ffffff;
+  --primary: #fafafa;
   --primary-foreground: #050505;
-  --secondary: #171717;
-  --secondary-foreground: #ededed;
-  --muted: #171717;
-  --muted-foreground: #888888;
+  --secondary: #141414;
+  --secondary-foreground: #e5e5e5;
+  --muted: #141414;
+  --muted-foreground: #737373;
 
   --accent: #3b82f6;
   --accent-hover: #60a5fa;
@@ -58,15 +58,15 @@
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  /* Extremely subtle borders for depth */
-  --border: rgba(255, 255, 255, 0.05);
-  --input: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.06);
+  --input: rgba(255, 255, 255, 0.04);
   --input-background: #0a0a0a;
 
   --ring: rgba(59, 130, 246, 0.5);
 }
 
 @theme inline {
+  --font-family-display: var(--font-display);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -192,35 +192,139 @@
 }
 
 @layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  @media (pointer: fine) {
+    html.has-custom-cursor,
+    html.has-custom-cursor * {
+      cursor: none !important;
+    }
+
+    html.has-custom-cursor input,
+    html.has-custom-cursor textarea,
+    html.has-custom-cursor select {
+      cursor: text !important;
+    }
+  }
+
+  /* Scroll reveal — staggered entrance */
   .reveal-hidden {
     opacity: 0;
-    transform: translateY(30px) scale(0.98);
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
 
   .reveal-visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 
-  .animate-blob {
-    animation: blob 20s infinite alternate ease-in-out;
+  /* Stagger children */
+  .reveal-visible > .stagger-child {
+    animation: stagger-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-  
+  .reveal-visible > .stagger-child:nth-child(1) { animation-delay: 0.05s; }
+  .reveal-visible > .stagger-child:nth-child(2) { animation-delay: 0.1s; }
+  .reveal-visible > .stagger-child:nth-child(3) { animation-delay: 0.15s; }
+  .reveal-visible > .stagger-child:nth-child(4) { animation-delay: 0.2s; }
+  .reveal-visible > .stagger-child:nth-child(5) { animation-delay: 0.25s; }
+  .reveal-visible > .stagger-child:nth-child(6) { animation-delay: 0.3s; }
+  .reveal-visible > .stagger-child:nth-child(7) { animation-delay: 0.35s; }
+  .reveal-visible > .stagger-child:nth-child(8) { animation-delay: 0.4s; }
+
+  @keyframes stagger-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Ambient floating blobs for background */
+  .animate-blob {
+    animation: blob 25s infinite alternate ease-in-out;
+  }
+
   .animation-delay-2000 {
     animation-delay: 2s;
   }
-  
+
   .animation-delay-4000 {
     animation-delay: 4s;
   }
 
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
+
   @keyframes blob {
     0% { transform: translate(0px, 0px) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-20px, 20px) scale(0.9); }
+    25% { transform: translate(40px, -60px) scale(1.05); }
+    50% { transform: translate(-30px, 30px) scale(0.95); }
+    75% { transform: translate(20px, -20px) scale(1.08); }
     100% { transform: translate(0px, 0px) scale(1); }
+  }
+
+  /* Marquee animation for skills */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* Subtle glow pulse */
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  /* Text gradient shimmer */
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient-text {
+    background-size: 200% auto;
+    animation: gradient-shift 6s ease-in-out infinite;
+  }
+
+  /* Aurora orb rotation */
+  @keyframes aurora-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes aurora-morph {
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+    75% { border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%; }
+  }
+
+  /* Line draw animation for timeline */
+  @keyframes line-draw {
+    from { height: 0; }
+    to { height: 100%; }
   }
 }
 
@@ -231,9 +335,16 @@
 
   .reveal-hidden,
   .reveal-visible,
-  .animate-blob {
+  .animate-blob,
+  .animate-marquee,
+  .animate-glow-pulse,
+  .animate-gradient-text {
     transition: none !important;
     animation: none !important;
     transform: none !important;
+  }
+
+  .reveal-hidden {
+    opacity: 1;
   }
 }
